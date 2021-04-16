@@ -1,3 +1,6 @@
+
+# testing 
+
 # Use powerline
 USE_POWERLINE="true"
 # Source manjaro-zsh-configuration
