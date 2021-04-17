@@ -14,6 +14,10 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
+--custom
+-- local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "default")
+-- beautiful.init(theme_path)
+
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
@@ -45,7 +49,8 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+beautiful.init("~/.config/awesome/themes/default/theme.lua")
+-- beautiful.useless_gap = 10
 
 -- This is used later as the default terminal and editor to run.
 terminal = "konsole"
@@ -57,12 +62,12 @@ editor_cmd = terminal .. " -e " .. editor
 -- If you do not like this or do not have such a key,
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
-modkey = "Mod4"
+modkey = "Mod1"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
     -- awful.layout.suit.floating,
-    -- awful.layout.suit.tile,
+    awful.layout.suit.tile,
     -- awful.layout.suit.tile.left,
     -- awful.layout.suit.tile.bottom,
     -- awful.layout.suit.tile.top,
@@ -77,6 +82,7 @@ awful.layout.layouts = {
     -- awful.layout.suit.corner.ne,
     -- awful.layout.suit.corner.sw,
     -- awful.layout.suit.corner.se,
+    -- treesome
 }
 -- }}}
 
@@ -227,6 +233,8 @@ root.buttons(gears.table.join(
 ))
 -- }}}
 
+
+
 -- {{{ Key bindings
 globalkeys = gears.table.join(
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,     {description="show help", group="awesome"}),
@@ -234,8 +242,8 @@ globalkeys = gears.table.join(
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext,          {description = "view next", group = "tag"}),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore,   {description = "go back", group = "tag"}),
 
-    awful.key({ modkey,           }, "j",      function () awful.client.focus.byidx( 1) end,    {description = "focus next by index", group = "client"}),
-    awful.key({ modkey,           }, "k",      function () awful.client.focus.byidx(-1) end,    {description = "focus previous by index", group = "client"}),
+    awful.key({ modkey,           }, "j",      function () awful.client.focus.byidx(-1) end,    {description = "focus previous by index", group = "client"}),
+    awful.key({ modkey,           }, "k",      function () awful.client.focus.byidx( 1) end,    {description = "focus next by index", group = "client"}),
     awful.key({ modkey,           }, "w",      function () mymainmenu:show() end,               {description = "show main menu", group = "awesome"}),
 
     -- Layout manipulation
@@ -256,8 +264,8 @@ globalkeys = gears.table.join(
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,   {description = "open a terminal", group = "launcher"}),
-    awful.key({ modkey, "Control" }, "r", awesome.restart,                              {description = "reload awesome", group = "awesome"}),
-    awful.key({ modkey, "Shift"   }, "q", awesome.quit,                                 {description = "quit awesome", group = "awesome"}),
+    awful.key({ modkey, "Control" }, "r",      awesome.restart,                         {description = "reload awesome", group = "awesome"}),
+    awful.key({ modkey, "Shift"   }, "q",      awesome.quit,                            {description = "quit awesome", group = "awesome"}),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,  {description = "increase master width factor", group = "layout"}),
     awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)          end,  {description = "decrease master width factor", group = "layout"}),
@@ -297,11 +305,16 @@ globalkeys = gears.table.join(
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,   {description = "show the menubar", group = "launcher"}),
 
+    -- gaps
+    -- awful.key({ modkey }, "=", function () lain.util.useless_gaps_resize(1) end, {description = "increment useless gaps", group = "tag"}),
+    -- awful.key({ modkey }, "-", function () lain.util.useless_gaps_resize(-1) end, {description = "decrement useless gaps", group = "tag"}),
+    
     -- function
     awful.key({ modkey }, "XF86AudioLowerVolume",   function () awful.util.spawn("xbacklight -5") end),
     awful.key({ modkey }, "XF86AudioRaiseVolume",   function () awful.util.spawn("xbacklight +5") end),
     awful.key({        }, "XF86AudioLowerVolume",   function () awful.util.spawn("pamixer -d 2") end),
     awful.key({        }, "XF86AudioRaiseVolume",   function () awful.util.spawn("pamixer -i 2") end)
+
 )
 
 clientkeys = gears.table.join(
@@ -516,3 +529,5 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+
