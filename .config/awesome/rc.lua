@@ -63,6 +63,7 @@ editor_cmd = terminal .. " -e " .. editor
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
 modkey = "Mod1"
+modkey2 = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
@@ -74,7 +75,7 @@ awful.layout.layouts = {
     -- awful.layout.suit.fair,
     -- awful.layout.suit.fair.horizontal,
     -- awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
+    -- awful.layout.suit.spiral.dwindle,
     -- awful.layout.suit.max,
     -- awful.layout.suit.max.fullscreen,
     -- awful.layout.suit.magnifier,
@@ -82,7 +83,6 @@ awful.layout.layouts = {
     -- awful.layout.suit.corner.ne,
     -- awful.layout.suit.corner.sw,
     -- awful.layout.suit.corner.se,
-    -- treesome
 }
 -- }}}
 
@@ -202,10 +202,11 @@ awful.screen.connect_for_each_screen(function(s)
     }
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s })
+    s.topbar = awful.wibar({ position = "top", screen = s })
+    s.bottombar = awful.wibar({ position = "bottom", screen = s })
 
     -- Add widgets to the wibox
-    s.mywibox:setup {
+    s.topbar:setup {
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
@@ -237,7 +238,7 @@ root.buttons(gears.table.join(
 
 -- {{{ Key bindings
 globalkeys = gears.table.join(
-    awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,     {description="show help", group="awesome"}),
+    awful.key({ modkey2,          }, "s",      hotkeys_popup.show_help,     {description="show help", group="awesome"}),
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,          {description = "view previous", group = "tag"}),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext,          {description = "view next", group = "tag"}),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore,   {description = "go back", group = "tag"}),
@@ -267,8 +268,8 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Control" }, "r",      awesome.restart,                         {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "q",      awesome.quit,                            {description = "quit awesome", group = "awesome"}),
 
-    awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,  {description = "increase master width factor", group = "layout"}),
-    awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)          end,  {description = "decrease master width factor", group = "layout"}),
+    awful.key({ modkey2,          }, "l",     function () awful.tag.incmwfact( 0.005)         end,  {description = "increase master width factor", group = "layout"}),
+    awful.key({ modkey2,          }, "h",     function () awful.tag.incmwfact(-0.005)         end,  {description = "decrease master width factor", group = "layout"}),
     awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1, nil, true) end,  {description = "increase the number of master clients", group = "layout"}),
     awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1, nil, true) end,  {description = "decrease the number of master clients", group = "layout"}),
     awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1, nil, true)    end,  {description = "increase the number of columns", group = "layout"}),
@@ -309,23 +310,27 @@ globalkeys = gears.table.join(
     -- awful.key({ modkey }, "=", function () lain.util.useless_gaps_resize(1) end, {description = "increment useless gaps", group = "tag"}),
     -- awful.key({ modkey }, "-", function () lain.util.useless_gaps_resize(-1) end, {description = "decrement useless gaps", group = "tag"}),
     
+    -- others
+    -- awful.key({ modkey }, "o", function()hhhh statusbar[mouse.screen].visible = not statusbar[mouse.screen].visible end)
+
     -- function
     awful.key({ modkey }, "XF86AudioLowerVolume",   function () awful.util.spawn("xbacklight -5") end),
     awful.key({ modkey }, "XF86AudioRaiseVolume",   function () awful.util.spawn("xbacklight +5") end),
     awful.key({        }, "XF86AudioLowerVolume",   function () awful.util.spawn("pamixer -d 2") end),
     awful.key({        }, "XF86AudioRaiseVolume",   function () awful.util.spawn("pamixer -i 2") end)
 
+
 )
 
 clientkeys = gears.table.join(
-    awful.key({ modkey,           }, "f",
+    awful.key({ modkey2,          }, "Return",
         function (c)
             c.fullscreen = not c.fullscreen
             c:raise()
         end,
     {description = "toggle fullscreen", group = "client"}),
-    awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,   {description = "toggle floating", group = "client"}),
-    awful.key({ modkey, "Shift"   }, "c",      function (c)  c:kill()                         end,   {description = "close", group = "client"}),
+    awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,    {description = "toggle floating", group = "client"}),
+    awful.key({ modkey, "Shift"   }, "w",      function (c)  c:kill()                         end,   {description = "close", group = "client"}),
     awful.key({ modkey, "Control" }, "Return", function (c)  c:swap(awful.client.getmaster()) end,   {description = "move to master", group = "client"}),
     awful.key({ modkey,           }, "o",      function (c)  c:move_to_screen()               end,   {description = "move to screen", group = "client"}),
     awful.key({ modkey,           }, "t",      function (c)  c.ontop = not c.ontop            end,   {description = "toggle keep on top", group = "client"}),
@@ -385,23 +390,17 @@ for i = 1, 9 do
                               client.focus:toggle_tag(tag)
                           end
                       end
-                  end,
+                    end,
                   {description = "toggle focused client on tag #" .. i, group = "tag"})
     )
 end
 
+
+-- mouse functionality 
 clientbuttons = gears.table.join(
-    awful.button({ }, 1, function (c)
-        c:emit_signal("request::activate", "mouse_click", {raise = true})
-    end),
-    awful.button({ modkey }, 1, function (c)
-        c:emit_signal("request::activate", "mouse_click", {raise = true})
-        awful.mouse.client.move(c)
-    end),
-    awful.button({ modkey }, 3, function (c)
-        c:emit_signal("request::activate", "mouse_click", {raise = true})
-        awful.mouse.client.resize(c)
-    end)
+    awful.button({         }, 1, function (c)  c:emit_signal("request::activate", "mouse_click", {raise = true})                                   end),
+    awful.button({ modkey2 }, 1, function (c)  c:emit_signal("request::activate", "mouse_click", {raise = true})   awful.mouse.client.move(c)      end),
+    awful.button({ modkey2 }, 3, function (c)  c:emit_signal("request::activate", "mouse_click", {raise = true})   awful.mouse.client.resize(c)    end)
 )
 
 -- Set keys
@@ -457,7 +456,7 @@ awful.rules.rules = {
 
     -- Add titlebars to normal clients and dialogs
     { rule_any = {type = { "normal", "dialog" }
-      }, properties = { titlebars_enabled = true }
+      }, properties = { titlebars_enabled = false }
     },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
@@ -471,7 +470,7 @@ awful.rules.rules = {
 client.connect_signal("manage", function (c)
     -- Set the windows at the slave,
     -- i.e. put it at the end of others instead of setting it master.
-    -- if not awesome.startup then awful.client.setslave(c) end
+    if not awesome.startup then awful.client.setslave(c) end
 
     if awesome.startup
       and not c.size_hints.user_position
@@ -522,11 +521,9 @@ client.connect_signal("request::titlebars", function(c)
 end)
 
 -- Enable sloppy focus, so that focus follows mouse.
-client.connect_signal("mouse::enter", function(c)
-    c:emit_signal("request::activate", "mouse_enter", {raise = false})
-end)
+-- client.connect_signal("mouse::enter", function(c)   c:emit_signal("request::activate", "mouse_enter", {raise = false})  end)
 
-client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
+client.connect_signal("focus",   function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 
