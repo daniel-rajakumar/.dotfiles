@@ -268,12 +268,15 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Control" }, "r",      awesome.restart,                         {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "q",      awesome.quit,                            {description = "quit awesome", group = "awesome"}),
 
-    awful.key({ modkey2,          }, "l",     function () awful.tag.incmwfact( 0.005)         end,  {description = "increase master width factor", group = "layout"}),
-    awful.key({ modkey2,          }, "h",     function () awful.tag.incmwfact(-0.005)         end,  {description = "decrease master width factor", group = "layout"}),
-    awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1, nil, true) end,  {description = "increase the number of master clients", group = "layout"}),
-    awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1, nil, true) end,  {description = "decrease the number of master clients", group = "layout"}),
-    awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1, nil, true)    end,  {description = "increase the number of columns", group = "layout"}),
-    awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1, nil, true)    end,  {description = "decrease the number of columns", group = "layout"}),
+    awful.key({ modkey2,          }, "l",     function () awful.tag.incmwfact( 0.005)        end,  {description = "increase master width factor", group = "layout"}),
+    awful.key({ modkey2,          }, "h",     function () awful.tag.incmwfact(-0.005)        end,  {description = "decrease master width factor", group = "layout"}),
+    awful.key({ modkey2,          }, "j",     function () awful.client.incwfact(-0.02)       end,  {description = "incress client height factor", group = "layout"}),
+    awful.key({ modkey2,          }, "k",     function () awful.client.incwfact( 0.02)       end,  {description = "decrease client height factor", group = "layout"}),
+    -- awful.key({ modkey2,          }, "m",     function () awful.client.shape.update.clip ()       end,  {description = "decrease client height factor", group = "layout"}),
+    -- awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1, nil, true) end,  {description = "increase the number of master clients", group = "layout"}),
+    -- awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1, nil, true) end,  {description = "decrease the number of master clients", group = "layout"}),
+    -- awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1, nil, true)    end,  {description = "increase the number of columns", group = "layout"}),
+    -- awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1, nil, true)    end,  {description = "decrease the number of columns", group = "layout"}),
     awful.key({ modkey,           }, "space", function () awful.layout.inc( 1)                end,  {description = "select next", group = "layout"}),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(-1)                end,  {description = "select previous", group = "layout"}),
 
@@ -304,7 +307,7 @@ globalkeys = gears.table.join(
               {description = "lua execute prompt", group = "awesome"}),
 
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end,   {description = "show the menubar", group = "launcher"}),
+    awful.key({ modkey2 }, "space", function() menubar.show() end,   {description = "show the menubar", group = "launcher"}),
 
     -- gaps
     -- awful.key({ modkey }, "=", function () lain.util.useless_gaps_resize(1) end, {description = "increment useless gaps", group = "tag"}),
@@ -419,7 +422,12 @@ awful.rules.rules = {
                      keys = clientkeys,
                      buttons = clientbuttons,
                      screen = awful.screen.preferred,
-                     placement = awful.placement.no_overlap+awful.placement.no_offscreen
+
+                     placement = awful.placement.no_overlap+awful.placement.no_offscreen,client.connect_signal("manage", function (c)
+                        c.shape = function(cr,w,h)
+                            gears.shape.rounded_rect(cr,w,h,beautiful.round_corner)
+                        end
+                    end)
      }
     },
 

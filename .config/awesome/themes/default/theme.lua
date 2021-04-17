@@ -25,6 +25,7 @@ theme.fg_urgent     = "#ffffff"
 theme.fg_minimize   = "#ffffff"
 
 -- theme.useless_gap   = dpi(0)
+theme.round_corner  = dpi(20)
 theme.useless_gap   = dpi(5)
 theme.border_width  = dpi(3)
 theme.border_normal = "#000000"
@@ -112,7 +113,7 @@ theme.layout_tileleft   = themes_path.."default/layouts/tileleftw.png"
 theme.layout_tile = themes_path.."default/layouts/tilew.png"
 theme.layout_tiletop = themes_path.."default/layouts/tiletopw.png"
 theme.layout_spiral  = themes_path.."default/layouts/spiralw.png"
-theme.layout_dwindle = themes_path.."default/layouts/dwindlew.png"
+theme.layout_dwindle = themes_path.."default/layouts/dwindlew.png"     
 theme.layout_cornernw = themes_path.."default/layouts/cornernww.png"
 theme.layout_cornerne = themes_path.."default/layouts/cornernew.png"
 theme.layout_cornersw = themes_path.."default/layouts/cornersww.png"
