@@ -15,6 +15,11 @@ local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 --custom
+local battery_widget = require("awesome-wm-widgets.battery-widget.battery")
+local weather_widget = require("awesome-wm-widgets.weather-widget.weather")
+local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
+local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
+
 -- local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "default")
 -- beautiful.init(theme_path)
 
@@ -201,30 +206,127 @@ awful.screen.connect_for_each_screen(function(s)
         buttons = tasklist_buttons
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     -- Create the wibox
-    s.topbar = awful.wibar({ position = "top", screen = s })
+    s.topbar    = awful.wibar({ position = "top", screen = s })
     s.bottombar = awful.wibar({ position = "bottom", screen = s })
+
 
     -- Add widgets to the wibox
     s.topbar:setup {
         layout = wibox.layout.align.horizontal,
+
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             mylauncher,
-            s.mytaglist,
-            s.mypromptbox,
+
         },
-        s.mytasklist, -- Middle widget
+
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
-            wibox.widget.systray(),
-            mytextclock,
-            s.mylayoutbox,
+            batteryarc_widget({
+                show_current_level = true,
+                arc_thickness = 1,
+            }),
+            volume_widget{
+                type = 'horizontal_bar'
+            },
         },
+
+        -- { -- Left widgets
+        --     layout = wibox.layout.fixed.horizontal,
+        --     mylauncher,
+        --     s.mytaglist,
+        --     s.mypromptbox,
+        -- },
+        -- s.mytasklist, -- Middle widget
+        -- { -- Right widgets
+        --     layout = wibox.layout.fixed.horizontal,
+        --     mykeyboardlayout,
+        --     wibox.widget.systray(),
+        --     mytextclock,
+        --     s.mylayoutbox,
+        -- },
+
+
+    }
+
+    s.bottombar:setup {
+        layout = wibox.layout.align.horizontal,
+
+        { -- Left widgets
+            layout = wibox.layout.fixed.horizontal,
+
+        },
+        
+        { -- Right widgets
+            layout = wibox.layout.fixed.horizontal,
+            wibox.widget.systray(),
+            -- awful.util.spawn("playerctl --player playerctld metadata --format '祥 {{duration(position) }} / {{ duration(mpris:length) }}  | ﴁ {{ artist }} |  {{ title }}' 2>/dev/null || echo "),
+
+            weather_widget({
+                api_key='', --TODO: 
+                coordinates = {0, 0}, --TODO: 
+            }),
+        },
+
     }
 end)
 -- }}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
@@ -489,6 +591,9 @@ client.connect_signal("manage", function (c)
         awful.placement.no_offscreen(c)
     end
 end)
+
+
+
 
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
 client.connect_signal("request::titlebars", function(c)
