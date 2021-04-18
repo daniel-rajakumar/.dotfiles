@@ -53,7 +53,7 @@ beautiful.init("~/.config/awesome/themes/default/theme.lua")
 -- beautiful.useless_gap = 10
 
 -- This is used later as the default terminal and editor to run.
-terminal = "konsole"
+terminal = "kitty"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -307,7 +307,7 @@ globalkeys = gears.table.join(
               {description = "lua execute prompt", group = "awesome"}),
 
     -- Menubar
-    awful.key({ modkey2 }, "space", function() menubar.show() end,   {description = "show the menubar", group = "launcher"}),
+    awful.key({ modkey }, "space", function() menubar.show() end,   {description = "show the menubar", group = "launcher"}),
 
     -- gaps
     -- awful.key({ modkey }, "=", function () lain.util.useless_gaps_resize(1) end, {description = "increment useless gaps", group = "tag"}),
@@ -332,7 +332,8 @@ clientkeys = gears.table.join(
             c:raise()
         end,
     {description = "toggle fullscreen", group = "client"}),
-    awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,    {description = "toggle floating", group = "client"}),
+
+    awful.key({ modkey2,"Shift"   }, "Return",  awful.client.floating.toggle                     ,   {description = "toggle floating", group = "client"}),
     awful.key({ modkey, "Shift"   }, "w",      function (c)  c:kill()                         end,   {description = "close", group = "client"}),
     awful.key({ modkey, "Control" }, "Return", function (c)  c:swap(awful.client.getmaster()) end,   {description = "move to master", group = "client"}),
     awful.key({ modkey,           }, "o",      function (c)  c:move_to_screen()               end,   {description = "move to screen", group = "client"}),
@@ -423,9 +424,10 @@ awful.rules.rules = {
                      buttons = clientbuttons,
                      screen = awful.screen.preferred,
 
+                    --  rounded corner
                      placement = awful.placement.no_overlap+awful.placement.no_offscreen,client.connect_signal("manage", function (c)
                         c.shape = function(cr,w,h)
-                            gears.shape.rounded_rect(cr,w,h,beautiful.round_corner)
+                            gears.shape.rounded_rect(cr,w,h, beautiful.round_corner)
                         end
                     end)
      }
