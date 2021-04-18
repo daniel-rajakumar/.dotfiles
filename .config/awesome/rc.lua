@@ -7,7 +7,7 @@ local gears = require("gears")
 local awful = require("awful")
 require("awful.autofocus")
 -- Widget and layout library
-local wibox = require("wibox")
+-- local wibox = require("wibox")
 -- Theme handling library
 local beautiful = require("beautiful")
 -- Notification library
@@ -15,10 +15,7 @@ local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 --custom
-local battery_widget = require("awesome-wm-widgets.battery-widget.battery")
-local weather_widget = require("awesome-wm-widgets.weather-widget.weather")
-local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
-local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
+-- local battery_widget = require("awesome-wm-widgets.battery-widget.battery")
 
 -- local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "default")
 -- beautiful.init(theme_path)
@@ -93,72 +90,82 @@ awful.layout.layouts = {
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
-myawesomemenu = {
-   { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-   { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awesome.conffile },
-   { "restart", awesome.restart },
-   { "quit", function() awesome.quit() end },
-}
+-- myawesomemenu = {
+--    { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
+--    { "manual", terminal .. " -e man awesome" },
+--    { "edit config", editor_cmd .. " " .. awesome.conffile },
+--    { "restart", awesome.restart },
+--    { "quit", function() awesome.quit() end },
+-- }
 
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "open terminal", terminal }
-                                  }
-                        })
+-- mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
+--                                     { "open terminal", terminal }
+--                                   }
+--                         })
 
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
-                                     menu = mymainmenu })
+-- mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
+--                                      menu = mymainmenu })
 
 -- Menubar configuration
-menubar.utils.terminal = terminal -- Set the terminal for applications that require it
+-- menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
 -- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
+-- mykeyboardlayout = awful.widget.keyboardlayout()
+
+
+
+
+
+
+
+
+
+
 
 -- {{{ Wibar
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
 
 -- Create a wibox for each screen and add it
-local taglist_buttons = gears.table.join(
-                    awful.button({ }, 1, function(t) t:view_only() end),
-                    awful.button({ modkey }, 1, function(t)
-                                              if client.focus then
-                                                  client.focus:move_to_tag(t)
-                                              end
-                                          end),
-                    awful.button({ }, 3, awful.tag.viewtoggle),
-                    awful.button({ modkey }, 3, function(t)
-                                              if client.focus then
-                                                  client.focus:toggle_tag(t)
-                                              end
-                                          end),
-                    awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
-                    awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
-                )
+-- local taglist_buttons = gears.table.join(
+--                     awful.button({ }, 1, function(t) t:view_only() end),
+--                     awful.button({ modkey }, 1, function(t)
+--                                               if client.focus then
+--                                                   client.focus:move_to_tag(t)
+--                                               end
+--                                           end),
+--                     awful.button({ }, 3, awful.tag.viewtoggle),
+--                     awful.button({ modkey }, 3, function(t)
+--                                               if client.focus then
+--                                                   client.focus:toggle_tag(t)
+--                                               end
+--                                           end),
+--                     awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
+--                     awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
+--                 )
 
-local tasklist_buttons = gears.table.join(
-                     awful.button({ }, 1, function (c)
-                                              if c == client.focus then
-                                                  c.minimized = true
-                                              else
-                                                  c:emit_signal(
-                                                      "request::activate",
-                                                      "tasklist",
-                                                      {raise = true}
-                                                  )
-                                              end
-                                          end),
-                     awful.button({ }, 3, function()
-                                              awful.menu.client_list({ theme = { width = 250 } })
-                                          end),
-                     awful.button({ }, 4, function ()
-                                              awful.client.focus.byidx(1)
-                                          end),
-                     awful.button({ }, 5, function ()
-                                              awful.client.focus.byidx(-1)
-                                          end))
+-- local tasklist_buttons = gears.table.join(
+--                      awful.button({ }, 1, function (c)
+--                                               if c == client.focus then
+--                                                   c.minimized = true
+--                                               else
+--                                                   c:emit_signal(
+--                                                       "request::activate",
+--                                                       "tasklist",
+--                                                       {raise = true}
+--                                                   )
+--                                               end
+--                                           end),
+--                      awful.button({ }, 3, function()
+--                                               awful.menu.client_list({ theme = { width = 250 } })
+--                                           end),
+--                      awful.button({ }, 4, function ()
+--                                               awful.client.focus.byidx(1)
+--                                           end),
+--                      awful.button({ }, 5, function ()
+--                                               awful.client.focus.byidx(-1)
+--                                           end))
 
 -- local function set_wallpaper(s)
 --     -- Wallpaper
@@ -176,39 +183,37 @@ local tasklist_buttons = gears.table.join(
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 -- screen.connect_signal("property::geometry", set_wallpaper)
 
-awful.screen.connect_for_each_screen(function(s)
+-- awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     -- set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+    -- awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
 
-    -- Create a promptbox for each screen
-    s.mypromptbox = awful.widget.prompt()
-    -- Create an imagebox widget which will contain an icon indicating which layout we're using.
-    -- We need one layoutbox per screen.
-    s.mylayoutbox = awful.widget.layoutbox(s)
-    s.mylayoutbox:buttons(gears.table.join(
-                           awful.button({ }, 1, function () awful.layout.inc( 1) end),
-                           awful.button({ }, 3, function () awful.layout.inc(-1) end),
-                           awful.button({ }, 4, function () awful.layout.inc( 1) end),
-                           awful.button({ }, 5, function () awful.layout.inc(-1) end)))
+    -- -- Create a promptbox for each screen
+    -- s.mypromptbox = awful.widget.prompt()
+    -- -- Create an imagebox widget which will contain an icon indicating which layout we're using.
+    -- -- We need one layoutbox per screen.
+    -- s.mylayoutbox = awful.widget.layoutbox(s)
+    -- s.mylayoutbox:buttons(gears.table.join(
+    --                        awful.button({ }, 1, function () awful.layout.inc( 1) end),
+    --                        awful.button({ }, 3, function () awful.layout.inc(-1) end),
+    --                        awful.button({ }, 4, function () awful.layout.inc( 1) end),
+    --                        awful.button({ }, 5, function () awful.layout.inc(-1) end)))
                            
-    -- Create a taglist widget
-    s.mytaglist = awful.widget.taglist {
-        screen  = s,
-        filter  = awful.widget.taglist.filter.all,
-        buttons = taglist_buttons
-    }
+    -- -- Create a taglist widget
+    -- s.mytaglist = awful.widget.taglist {
+    --     screen  = s,
+    --     filter  = awful.widget.taglist.filter.all,
+    --     buttons = taglist_buttons
+    -- }
 
-    -- Create a tasklist widget
-    s.mytasklist = awful.widget.tasklist {
-        screen  = s,
-        filter  = awful.widget.tasklist.filter.currenttags,
-        buttons = tasklist_buttons
-    }
-
-
+    -- -- Create a tasklist widget
+    -- s.mytasklist = awful.widget.tasklist {
+    --     screen  = s,
+    --     filter  = awful.widget.tasklist.filter.currenttags,
+    --     buttons = tasklist_buttons
+    -- }
 
 
 
@@ -244,73 +249,87 @@ awful.screen.connect_for_each_screen(function(s)
 
 
 
-    -- Create the wibox
-    -- local pos = s.geomery
-    s.topbar    = awful.wibar({ position = "top", screen = s, bg="#11223300"})
-    s.bottombar = awful.wibar({ position = "bottom", screen = s, bg="#11223300"})
-
-    -- Add widgets to the wibox
-    s.topbar:setup {
-        layout = wibox.layout.align.horizontal,
-
-        { -- Left widgets
-            layout = wibox.layout.fixed.horizontal,
-            mylauncher,
-            s.mytaglist,
-
-        },
-        mytextclock,
-        { -- Right widgets
-            layout = wibox.layout.fixed.horizontal,
-            batteryarc_widget({
-                show_current_level = true,
-                arc_thickness = 1,
-            }),
-            volume_widget{
-                type = 'horizontal_bar'
-            },
-        },
-
-        -- { -- Left widgets
-        --     layout = wibox.layout.fixed.horizontal,
-        --     mylauncher,
-        --     s.mytaglist,
-        --     s.mypromptbox,
-        -- },
-        -- s.mytasklist, -- Middle widget
-        -- { -- Right widgets
-        --     layout = wibox.layout.fixed.horizontal,
-        --     mykeyboardlayout,
-        --     wibox.widget.systray(),
-        --     mytextclock,
-        --     s.mylayoutbox,
-        -- },
 
 
-    }
+--     -- Create the wibox
 
-    s.bottombar:setup {
-        layout = wibox.layout.align.horizontal,
+--     local weather_widget = require("awesome-wm-widgets.weather-widget.weather")
+--     local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
+--     local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
+--     local brightness_widget = require("awesome-wm-widgets.brightness-widget.brightness")
 
-        { -- Left widgets
-            layout = wibox.layout.fixed.horizontal,
+--     -- local pos = s.geomery
+--     -- s.topbar    = awful.wibar({ position = "top", screen = s, bg="#11223300"})
+--     -- s.bottombar = awful.wibar({ position = "bottom", screen = s, bg="#11223300"})
 
-        },
+--     -- Add widgets to the wibox
+--     s.topbar:setup {
+--         layout = wibox.layout.align.horizontal,
 
-        { -- Right widgets
-            layout = wibox.layout.fixed.horizontal,
-            wibox.widget.systray(),
-            -- awful.util.spawn("playerctl --player playerctld metadata --format '祥 {{duration(position) }} / {{ duration(mpris:length) }}  | ﴁ {{ artist }} |  {{ title }}' 2>/dev/null || echo "),
+--         { -- Left widgets
+--             layout = wibox.layout.fixed.horizontal,
+--             mylauncher,
+--             s.mytaglist,
 
-            weather_widget({
-                api_key='', --TODO: 
-                coordinates = {0, 0}, --TODO: 
-            }),
-        },
+--         },
+--         mytextclock,
+--         { -- Right widgets
+--             layout = wibox.layout.fixed.horizontal,
+--             volume_widget{
+--                 type = 'horizontal_bar'
+--             },
+--             brightness_widget{
+--                 type = 'icon_and_text',
+--                 program = 'xbacklight',
+--                 step = 2,    
+--                 timeout = 1    
+--             },
+--             batteryarc_widget({
+--                 show_current_level = true,
+--                 arc_thickness = 1,
+--             })
+--         },
 
-    }
-end)
--- }}}
+--         -- { -- Left widgets
+--         --     layout = wibox.layout.fixed.horizontal,
+--         --     mylauncher,
+--         --     s.mytaglist,
+--         --     s.mypromptbox,
+--         -- },
+--         -- s.mytasklist, -- Middle widget
+--         -- { -- Right widgets
+--         --     layout = wibox.layout.fixed.horizontal,
+--         --     mykeyboardlayout,
+--         --     wibox.widget.systray(),
+--         --     mytextclock,
+--         --     s.mylayoutbox,
+--         -- },
+
+
+--     }
+
+--     s.bottombar:setup {
+--         layout = wibox.layout.align.horizontal,
+
+--         { -- Left widgets
+--             layout = wibox.layout.fixed.horizontal,
+
+--         },
+
+--         { -- Right widgets
+--             layout = wibox.layout.fixed.horizontal,
+--             wibox.widget.systray(),
+--             -- awful.util.spawn("playerctl --player playerctld metadata --format '祥 {{duration(position) }} / {{ duration(mpris:length) }}  | ﴁ {{ artist }} |  {{ title }}' 2>/dev/null || echo "),
+
+--             weather_widget({
+--                 api_key='', --TODO: 
+--                 coordinates = {0, 0}, --TODO: 
+--             }),
+--         },
+
+--     }
+-- end)
+-- -- }}}
 
 
 
@@ -448,24 +467,24 @@ globalkeys = gears.table.join(
     -- awful.key({ modkey }, "-", function () lain.util.useless_gaps_resize(-1) end, {description = "decrement useless gaps", group = "tag"}),
     
     -- others
-    -- awful.key({ modkey }, "o", function()hhhh statusbar[mouse.screen].visible = not statusbar[mouse.screen].visible end)
+    -- awful.key({ modkey }, "o", function() statusbar[mouse.screen].visible = not statusbar[mouse.screen].visible end)
 
 
     -- Show/Hide Wibox
-    awful.key({ modkey2 }, "]", function ()
-        for s in screen do
-            -- s.topbar.visible = not s.topbar.visible
-            s.bottombar.visible = not s.bottombar.visible
-        end
-    end,
-    {description = "toggle wibox", group = "awesome"}),
+    -- awful.key({ modkey2 }, "]", function ()
+    --     for s in screen do
+    --         -- s.topbar.visible = not s.topbar.visible
+    --         s.bottombar.visible = not s.bottombar.visible
+    --     end
+    -- end,
+    -- {description = "toggle wibox", group = "awesome"}),
 
-    awful.key({ modkey2 }, "[", function ()
-        for s in screen do
-            s.topbar.visible = not s.topbar.visible
-        end
-    end,
-    {description = "toggle wibox", group = "awesome"}),
+    -- awful.key({ modkey2 }, "[", function ()
+    --     for s in screen do
+    --         s.topbar.visible = not s.topbar.visible
+    --     end
+    -- end,
+    -- {description = "toggle wibox", group = "awesome"}),
 
     
     -- screenshot
@@ -703,7 +722,8 @@ do
     {
         "flameshot &",
         "xrandr --output eDP1 --primary --mode 1920x1080 --pos 1280x0 --rotate normal --output DP1 --off --output DP2 --off --output HDMI1 --mode 1280x1024 --pos 0x0 --rotate normal --output VIRTUAL1 --off",
-        "nitrogen --random ~/Pictures/wallpapers/Awesome --set-scaled"
+        "nitrogen ~/Pictures/wallpapers/Awesome/wallpaperflare.com_wallpaper.jpg --set-scaled --head=1",
+        "nitrogen ~/Pictures/wallpapers/Awesome/wallpaperflare.com_wallpaper.jpg --set-scaled --head=0"
     }
   
     for _,i in pairs(cmds) do

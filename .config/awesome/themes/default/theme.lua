@@ -31,7 +31,7 @@ theme.border_width  = dpi(3)
 theme.border_normal = "#000000"
 theme.border_focus  = "#34be5b"
 theme.border_marked = "#91231c"
--- #16A085
+-- #16A085, #34be5b
 -- There are other variable sets
 -- overriding the default one when
 -- defined, the sets are:
