@@ -193,6 +193,7 @@ awful.screen.connect_for_each_screen(function(s)
                            awful.button({ }, 3, function () awful.layout.inc(-1) end),
                            awful.button({ }, 4, function () awful.layout.inc( 1) end),
                            awful.button({ }, 5, function () awful.layout.inc(-1) end)))
+                           
     -- Create a taglist widget
     s.mytaglist = awful.widget.taglist {
         screen  = s,
@@ -227,6 +228,22 @@ awful.screen.connect_for_each_screen(function(s)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     -- Create the wibox
     -- local pos = s.geomery
     s.topbar    = awful.wibar({ position = "top", screen = s, bg="#11223300"})
@@ -239,9 +256,10 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             mylauncher,
+            s.mytaglist,
 
         },
-
+        mytextclock,
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             batteryarc_widget({
@@ -278,7 +296,7 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
 
         },
-        
+
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
@@ -329,6 +347,19 @@ end)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
     awful.button({ }, 3, function () mymainmenu:toggle() end),
@@ -341,7 +372,7 @@ root.buttons(gears.table.join(
 
 -- {{{ Key bindings
 globalkeys = gears.table.join(
-    awful.key({ modkey2,          }, "s",      hotkeys_popup.show_help,     {description="show help", group="awesome"}),
+    awful.key({ modkey2,          }, "/",      hotkeys_popup.show_help,     {description="show help", group="awesome"}),
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,          {description = "view previous", group = "tag"}),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext,          {description = "view next", group = "tag"}),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore,   {description = "go back", group = "tag"}),
@@ -437,6 +468,9 @@ globalkeys = gears.table.join(
     {description = "toggle wibox", group = "awesome"}),
 
     
+    -- screenshot
+    awful.key({ modkey2 }, "s",   function () awful.util.spawn("flameshot gui") end),
+
     -- function
     awful.key({ modkey }, "XF86AudioLowerVolume",   function () awful.util.spawn("xbacklight -5") end),
     awful.key({ modkey }, "XF86AudioRaiseVolume",   function () awful.util.spawn("xbacklight +5") end),
@@ -455,7 +489,7 @@ clientkeys = gears.table.join(
         end,
     {description = "toggle fullscreen", group = "client"}),
 
-    awful.key({ modkey2,"Shift"   }, "Return",  awful.client.floating.toggle                     ,   {description = "toggle floating", group = "client"}),
+    awful.key({ modkey2,"Shift"   }, "Return", awful.client.floating.toggle                     ,   {description = "toggle floating", group = "client"}),
     awful.key({ modkey, "Shift"   }, "w",      function (c)  c:kill()                         end,   {description = "close", group = "client"}),
     awful.key({ modkey, "Control" }, "Return", function (c)  c:swap(awful.client.getmaster()) end,   {description = "move to master", group = "client"}),
     awful.key({ modkey,           }, "o",      function (c)  c:move_to_screen()               end,   {description = "move to screen", group = "client"}),
@@ -667,8 +701,9 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 do
     local cmds =
     {
-      "nitrogen --random ~/Pictures/wallpapers/Awesome --set-scaled",
-      "flameshot &"
+        "flameshot &",
+        "xrandr --output eDP1 --primary --mode 1920x1080 --pos 1280x0 --rotate normal --output DP1 --off --output DP2 --off --output HDMI1 --mode 1280x1024 --pos 0x0 --rotate normal --output VIRTUAL1 --off",
+        "nitrogen --random ~/Pictures/wallpapers/Awesome --set-scaled"
     }
   
     for _,i in pairs(cmds) do
