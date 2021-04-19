@@ -13,6 +13,8 @@ import System.Exit
 
 -- custome
 import XMonad.Util.SpawnOnce
+import XMonad.Util.Run
+import XMonad.Hooks.ManageDocks
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -54,83 +56,42 @@ myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
-myNormalBorderColor  = "#dddddd"
-myFocusedBorderColor = "#ff0000"
+myNormalBorderColor  = "#ff0000"
+myFocusedBorderColor = "#34be5b"
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
 --
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
-    -- launch a terminal
-    [ ((modm .|. shiftMask,          xK_Return), spawn $ XMonad.terminal conf)
-    -- [ ((modm , xK_Return), spawn "kitty")
+    [ ((modm,          xK_Return), spawn $ XMonad.terminal conf) -- terminal
+    , ((modm,               xK_space     ), spawn "rofi -combi-modi window,drun -show combi -modi combi") -- launch propmt
 
-    -- launch dmenu
-    , ((modm,               xK_p     ), spawn "dmenu_run")
+    , ((modm .|. shiftMask, xK_w     ), kill) -- close window
 
-    -- launch gmrun
-    , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
+    , ((modm,               xK_backslash ), sendMessage NextLayout) -- next layout
 
-    -- close focused window
-    , ((modm .|. shiftMask, xK_c     ), kill)
+    , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf) -- reset ALL window size to default
 
-     -- Rotate through the available layout algorithms
-    , ((modm,               xK_space ), sendMessage NextLayout)
+    , ((modm,               xK_k     ), windows W.focusDown) -- focus prev window
+    , ((modm,               xK_j     ), windows W.focusUp  ) -- focus next window
 
-    --  Reset the layouts on the current workspace to default
-    , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
+    , ((modm .|. shiftMask, xK_j     ), windows W.swapDown  ) --swap with next window
+    , ((modm .|. shiftMask, xK_k     ), windows W.swapUp    ) --swap with prev window
 
-    -- Resize viewed windows to the correct size
-    , ((modm,               xK_n     ), refresh)
+    , ((mod4Mask,               xK_h     ), sendMessage Shrink)  -- master size decress
+    , ((mod4Mask,               xK_l     ), sendMessage Expand) -- master size incress
 
-    -- Move focus to the next window
-    , ((modm,               xK_Tab   ), windows W.focusDown)
+    , ((modm,               xK_t     ), withFocused $ windows . W.sink) -- windows to tile mode
 
-    -- Move focus to the next window
-    , ((modm,               xK_j     ), windows W.focusDown)
-
-    -- Move focus to the previous window
-    , ((modm,               xK_k     ), windows W.focusUp  )
-
-    -- Move focus to the master window
-    , ((modm,               xK_m     ), windows W.focusMaster  )
-
-    -- Swap the focused window and the master window
-    , ((modm,               xK_Return), windows W.swapMaster)
-
-    -- Swap the focused window with the next window
-    , ((modm .|. shiftMask, xK_j     ), windows W.swapDown  )
-
-    -- Swap the focused window with the previous window
-    , ((modm .|. shiftMask, xK_k     ), windows W.swapUp    )
-
-    -- Shrink the master area
-    , ((mod4Mask,               xK_h     ), sendMessage Shrink)
-
-    -- Expand the master area
-    , ((mod4Mask,               xK_l     ), sendMessage Expand)
-
-    -- Push window back into tiling
-    , ((modm,               xK_t     ), withFocused $ windows . W.sink)
-
-    -- Increment the number of windows in the master area
-    , ((modm              , xK_comma ), sendMessage (IncMasterN 1))
-
-    -- Deincrement the number of windows in the master area
-    , ((modm              , xK_period), sendMessage (IncMasterN (-1)))
-
-    -- Toggle the status bar gap
-    -- Use this binding with avoidStruts from Hooks.ManageDocks.
-    -- See also the statusBar function from Hooks.DynamicLog.
-    --
-    -- , ((modm              , xK_b     ), sendMessage ToggleStruts)
+    , ((modm              , xK_comma ), sendMessage (IncMasterN 1)) -- add one window from master 
+    , ((modm              , xK_period), sendMessage (IncMasterN (-1))) -- remove one window from master 
 
     -- Quit xmonad
     , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
 
     -- Restart xmonad
-    , ((modm              , xK_q     ), spawn "xmonad --recompile; xmonad --restart")
+    , ((modm            , xK_Escape     ), spawn "xmonad --recompile; xmonad --restart")
 
     -- Run xmessage with a summary of the default keybindings (useful for beginners)
     , ((modm .|. shiftMask, xK_slash ), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
@@ -185,7 +146,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = tiled ||| Mirror tiled ||| Full
+myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full)
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -197,7 +158,8 @@ myLayout = tiled ||| Mirror tiled ||| Full
      ratio   = 1/2
 
      -- Percent of screen to increment by when resizing panes
-     delta   = 10/100
+     delta   = 1/100
+
 
 ------------------------------------------------------------------------
 -- Window rules:
@@ -248,14 +210,16 @@ myLogHook = return ()
 --
 -- By default, do nothing.
 myStartupHook = do
-	spawnOnce "nitrogen --restore &"
+	spawnOnce "nitrogen --random ~/Pictures/wallpapers/Xmonad --set-zoom-fill &"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
 
 -- Run xmonad with the settings you specify. No need to modify this.
 --
-main = xmonad defaults
+main = do
+	xmproc <- spawnPipe ""
+	xmonad defaults
 
 -- A structure containing your configuration settings, overriding
 -- fields in the default config. Any you don't override, will
