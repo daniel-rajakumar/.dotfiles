@@ -11,17 +11,20 @@ import XMonad
 import Data.Monoid
 import System.Exit
 
+-- custome
+import XMonad.Util.SpawnOnce
+
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal      = "xterm"
+myTerminal      = "kitty"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
-myFocusFollowsMouse = True
+myFocusFollowsMouse = False
 
 -- Whether clicking on a window to focus also passes the click to the window
 myClickJustFocuses :: Bool
@@ -29,7 +32,7 @@ myClickJustFocuses = False
 
 -- Width of the window border in pixels.
 --
-myBorderWidth   = 1
+myBorderWidth   = 3
 
 -- modMask lets you specify which modkey you want to use. The default
 -- is mod1Mask ("left alt").  You may also consider using mod3Mask
@@ -60,7 +63,8 @@ myFocusedBorderColor = "#ff0000"
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- launch a terminal
-    [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
+    [ ((modm .|. shiftMask,          xK_Return), spawn $ XMonad.terminal conf)
+    -- [ ((modm , xK_Return), spawn "kitty")
 
     -- launch dmenu
     , ((modm,               xK_p     ), spawn "dmenu_run")
@@ -102,10 +106,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_k     ), windows W.swapUp    )
 
     -- Shrink the master area
-    , ((modm,               xK_h     ), sendMessage Shrink)
+    , ((mod4Mask,               xK_h     ), sendMessage Shrink)
 
     -- Expand the master area
-    , ((modm,               xK_l     ), sendMessage Expand)
+    , ((mod4Mask,               xK_l     ), sendMessage Expand)
 
     -- Push window back into tiling
     , ((modm,               xK_t     ), withFocused $ windows . W.sink)
@@ -193,7 +197,7 @@ myLayout = tiled ||| Mirror tiled ||| Full
      ratio   = 1/2
 
      -- Percent of screen to increment by when resizing panes
-     delta   = 3/100
+     delta   = 10/100
 
 ------------------------------------------------------------------------
 -- Window rules:
@@ -243,7 +247,8 @@ myLogHook = return ()
 -- per-workspace layout choices.
 --
 -- By default, do nothing.
-myStartupHook = return ()
+myStartupHook = do
+	spawnOnce "nitrogen --restore &"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
