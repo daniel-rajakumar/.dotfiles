@@ -94,19 +94,40 @@ super + shift + alt + Return
 
 
 
-# focus the last node/desktop
-super + {grave,Tab}
-	bspc {node,desktop} -f last
+# switch desktop (0-9)
+alt + {0-9}
+    bspc desktop -f {0-9}
 
-# focus the older or newer node in the focus history
-super + {o,i}
-	bspc wm -h off; \
-	bspc node {older,newer} -f; \
-	bspc wm -h on
+# switch desktop (10-19)
+control + {0-9}
+    bspc desktop -f 1{0-9}
 
-# focus or send to the given desktop
-super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+# switch desktop (20-29)
+super + {0-9}
+    bspc desktop -f 2{0-9}
+
+
+
+
+# move mode to other desktop (0-9)
+alt + shift + {0-9}
+	bspc node -d {0-9}
+
+# move mode to other desktop (10-19)
+control + shift + {0-9}
+	bspc node -d 1{0-9}
+
+
+# move mode to other desktop (20-29)
+super + shift + {0-9}
+	bspc node -d 2{0-9}
+
+
+
+
+
+
+
 
 #
 # preselect
@@ -116,13 +137,6 @@ super + {_,shift + }{1-9,0}
 super + ctrl + {h,j,k,l}
 	bspc node -p {west,south,north,east}
 
-# preselect the ratio
-super + ctrl + {1-9}
-	bspc node -o 0.{1-9}
-
-# cancel the preselection for the focused node
-super + ctrl + space
-	bspc node -p cancel
 
 # cancel the preselection for the focused desktop
 super + ctrl + shift + space
@@ -132,13 +146,6 @@ super + ctrl + shift + space
 # move/resize
 #
 
-# expand a window by moving one of its side outward
-#super + {h,j,k,l}
-#	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
-
-#super + {h,j,k,l}
-#	bspc node -z {left -20 0,bottom 0 20,left 0 -20,left 20 0}
-
 # resize nodes
 super + {h,j,k,l}
   bspc node -z {left -20 0 || bspc node -z right -20 0, \
@@ -147,11 +154,6 @@ super + {h,j,k,l}
                 right 20 0 || bspc node -z left 20 0}
 
 				
-
-# contract a window by moving one of its side inward
-super + alt + shift + {h,j,k,l}
-	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
-
 # move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
