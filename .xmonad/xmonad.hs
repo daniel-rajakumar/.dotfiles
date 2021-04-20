@@ -56,7 +56,7 @@ myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
-myNormalBorderColor  = "#ff0000"
+myNormalBorderColor  = "#000000"
 myFocusedBorderColor = "#34be5b"
 
 ------------------------------------------------------------------------
@@ -64,8 +64,8 @@ myFocusedBorderColor = "#34be5b"
 --
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
-    [ ((modm,          xK_Return), spawn $ XMonad.terminal conf) -- terminal
-    , ((modm,               xK_space     ), spawn "rofi -combi-modi window,drun -show combi -modi combi") -- launch propmt
+    [ ((modm,        	xK_Return    ), spawn $ XMonad.terminal conf) -- terminal
+    , ((modm,           xK_space     ), spawn "rofi -combi-modi window,drun -show combi -modi combi") -- launch propmt
 
     , ((modm .|. shiftMask, xK_w     ), kill) -- close window
 
@@ -87,11 +87,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm              , xK_comma ), sendMessage (IncMasterN 1)) -- add one window from master 
     , ((modm              , xK_period), sendMessage (IncMasterN (-1))) -- remove one window from master 
 
-    -- Quit xmonad
-    , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
-
-    -- Restart xmonad
-    , ((modm            , xK_Escape     ), spawn "xmonad --recompile; xmonad --restart")
+    , ((modm .|. shiftMask, xK_Escape     ), io (exitWith ExitSuccess)) -- quit xmonad
+    , ((modm,               xK_Escape     ), spawn "xmonad --recompile && xmonad --restart") -- restart xmonad
 
     -- Run xmessage with a summary of the default keybindings (useful for beginners)
     , ((modm .|. shiftMask, xK_slash ), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
@@ -112,7 +109,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
     --
     [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
-        | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
+        | (key, sc) <- zip [xK_Tab] [0..]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
 
@@ -179,7 +176,11 @@ myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full)
 myManageHook = composeAll
     [ className =? "MPlayer"        --> doFloat
     , className =? "Gimp"           --> doFloat
+    , className =? "firefox" --> doShift  ( myWorkspaces !! 0 )
+    , className =? "discord" --> doShift  ( myWorkspaces !! 7 )
+    , title =? "YouTube Music" --> doShift  ( myWorkspaces !! 8 )
     , resource  =? "desktop_window" --> doIgnore
+
     , resource  =? "kdesktop"       --> doIgnore ]
 
 ------------------------------------------------------------------------
@@ -211,6 +212,7 @@ myLogHook = return ()
 -- By default, do nothing.
 myStartupHook = do
 	spawnOnce "nitrogen --random ~/Pictures/wallpapers/Xmonad --set-zoom-fill &"
+	spawnOnce "xrandr --output eDP1 --primary --mode 1920x1080 --pos 1280x0 --rotate normal --output DP1 --off --output DP2 --off --output HDMI1 --mode 1280x1024 --pos 0x0 --rotate normal --output VIRTUAL1 --off"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
