@@ -18,7 +18,7 @@
 
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #222
+background = #00000000
 background-alt = #444
 ;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
@@ -51,10 +51,13 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = caskaydiacove nerd font:pixelsize=10;1
-;font-0 = fixed:pixelsize=10;1
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = siji:pixelsize=10;1
+font-0 =  UbuntuMono Nerd Font:style=Solid:size=12;1
+;font-1 = Font Awesome 5 Free:style=Solid:size=12;1
+;font-0 = caskaydiacove nerd font:style=Solid:size=12;1
+;font-1 = FontAwesome5Free:style=Regular:size=10;4
+;font-2 = FontAwesome5Brands:style=Regular:size=18;4
+;font-3 = Ubuntu:style=Solid:size=11.5;1
+;font-4 = Hack Nerd Font Mono:style=Regular:size=22;3
 
 modules-left = bspwm i3
 modules-center = mpd
@@ -291,6 +294,12 @@ bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground-alt}
 
+
+
+
+
+
+
 [module/battery]
 type = internal/battery
 battery = BAT0
@@ -318,11 +327,18 @@ animation-charging-2 = 
 animation-charging-foreground = ${colors.foreground-alt}
 animation-charging-framerate = 750
 
-animation-discharging-0 = 
-animation-discharging-1 = 
-animation-discharging-2 = 
+
+
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+;animation-discharging-0 = 
+;animation-discharging-1 = 
+;animation-discharging-2 = 
 animation-discharging-foreground = ${colors.foreground-alt}
 animation-discharging-framerate = 750
+
+
 
 [module/temperature]
 type = internal/temperature
@@ -342,6 +358,7 @@ ramp-0 = 
 ramp-1 = 
 ramp-2 = 
 ramp-foreground = ${colors.foreground-alt}
+
 
 [module/powermenu]
 type = custom/menu
