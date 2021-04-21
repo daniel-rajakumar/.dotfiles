@@ -166,3 +166,9 @@ super + {h,j,k,l}
 # move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+
+
+#color picker
+super + c
+	colorpicker --short --one-shot --preview | xclip -selection clipboard -r
