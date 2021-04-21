@@ -7,7 +7,7 @@ alt + Return
 	kitty
 
 # program launcher
-alt + @space
+alt + space
 	rofi -combi-modi window,drun -show combi -modi combi
 
 # make sxhkd reload its configuration files:
