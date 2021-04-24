@@ -167,6 +167,24 @@ super + {h,j,k,l}
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
+# increase volume
+XF86AudioRaiseVolume
+    pamixer -i 1
+
+# decrease volume
+XF86AudioLowerVolume
+    pamixer -d 1
+
+
+
+# increase brightness
+alt + XF86AudioRaiseVolume
+    xbacklight +5
+
+# decrease brightness
+alt + XF86AudioLowerVolume
+    xbacklight -5
+
 
 
 #color picker
@@ -177,3 +195,6 @@ super + c
 #picom
 super + b
 	killall picom || picom &
+
+
+

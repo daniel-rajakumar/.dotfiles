@@ -1,0 +1,24 @@
+swipe:
+  3:
+    up:
+        command: "pamixer -i 2 && notify-send 'volume - up'" # volume inc
+    down:
+        command: "pamixer -d 2 && notify-send 'volume - down'" # volume dec
+  4:
+    up:
+      command: "xbacklight +5 && notify-send 'brightness - up'" # brightness inc 
+    down:
+      command: "xbacklight -5 && notify-send 'brightness - down'" # brightness dec
+
+
+
+threshold:
+  swipe: 0.1
+
+interval:
+  swipe: 0.1
+  pinch: 0.1
+
+
+
+

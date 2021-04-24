@@ -5,6 +5,7 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 polybar example &
 dunst &
 picom --experimental-backends &
+killall fusuma && fusuma &
 
 #wallpaper
 nitrogen --head=1 --random ~/Pictures/wallpapers/bspwm/dark_waves.jpg --set-zoom-fill &
