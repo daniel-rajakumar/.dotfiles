@@ -1,0 +1,11 @@
+configuration {
+	modi: "drun,window,calc";
+	width: 45;
+	columns: 2;
+	font: "hack 11";
+	padding: 40;
+	show-icons: true;
+	icon-theme: "Papirus";
+	separator-style: "solid";
+	theme: "~/.config/rofi/themes/onedark.rasi";
+}
