@@ -172,3 +172,8 @@ super + {Left,Down,Up,Right}
 #color picker
 super + c
 	colorpicker --short --one-shot --preview | xclip -selection clipboard -r
+
+
+#picom
+super + b
+	killall picom || picom &

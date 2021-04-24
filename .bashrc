@@ -137,10 +137,3 @@ ex ()
     echo "'$1' is not a valid file"
   fi
 }
-
-
-
-
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-
-
