@@ -1,3 +1,25 @@
+  
+/* hide the url menu */
+
+@keyframes navbar {
+  0%   {height: 40px; max-height: 40px; min-height: 40px;}
+  93%  {height: 40px; max-height: 40px; min-height: 40px;}
+  100% {height: 3px; max-height: 3px; min-height: 3px;}
+}
+
+@keyframes navbarHover {
+  100%   {height: 40px; max-height: 40px; min-height: 40px;}
+}
+
+
+:root:not([customizing]) #nav-bar {animation: navbar 1s forwards !important;}
+:root:not([customizing]) #navigator-toolbox:hover #nav-bar {animation: navbarHover 3ms forwards !important;}
+:root:not([customizing]) #navigator-toolbox #urlbar {--urlbar-toolbar-height: 40px !important}
+
+.findbar-textbox{border-radius: 26px 0 0 26px;border-right-color:#f9f9fa33 !important}
+.findbar-find-next{border-radius: 0 26px 26px 0;}
+.findbar-textbox[focused]~toolbarbutton{border-color:var(--toolbar-field-focus-border-color);border-left-color:#f9f9fa33}
+
 
 /* hide sidebar's scrollbar */
 #sidebar {margin-right: -15px !important;}
@@ -35,5 +57,9 @@
     margin-right: calc((var(--sidebar-visible-width) - var(--sidebar-min-width)) * -1) !important;
     z-index:1;
     position: relative !important;
-    transition: .2s ease .25s;
+    transition: .2s ease .0s;
   }
+
+
+
+
