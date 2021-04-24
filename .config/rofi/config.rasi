@@ -4,7 +4,7 @@ configuration {
 	columns: 2;
 	font: "hack 11";
 	padding: 40;
-	show-icons: true;
+	show-icons: false;
 	icon-theme: "Papirus";
 	separator-style: "solid";
 	theme: "~/.config/rofi/themes/onedark.rasi";

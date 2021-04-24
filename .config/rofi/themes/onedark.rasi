@@ -96,8 +96,8 @@ element {
 }
 
 element selected {
-  background-color: @emphasis;
-  text-color: @text;
+  background-color: #95ee8f99;
+  text-color: @black;
 }
 
 element urgent, element selected urgent {
