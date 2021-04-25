@@ -16,283 +16,184 @@
 ;
 ;==========================================================
 
-[colors]
-;background = ${xrdb:color0:#222}
-background = #00000000
-background-alt = #444
-;foreground = ${xrdb:color7:#222}
-foreground = #dfdfdf
-foreground-alt = #555
-primary = #ffb52a
-secondary = #e60053
-alert = #bd2c40
 
-[bar/example]
-;monitor = ${env:MONITOR:HDMI-1}
+[colors]
+background = #1E1E1E
+foreground = #979eab
+
+black0 	 = #282C34
+black1 	 = #454C59
+red0 	 = #E06C75
+red1 	 = #FF7A85
+green0 	 = #98C379
+green1 	 = #B5E890
+yellow0  = #E5C07B
+yellow1  = #FFD68A
+blue0 	 = #61AFEF
+blue1 	 = #69BBFF
+meganta0 = #C678DD
+megenta1 = #E48AFF
+cyan0 	 = #56B6C2
+cyan1 	 = #66D9E8
+white0 	 = #ABB2BF
+white1 	 = #CFD7E6
+
+
+
+[bar/top]
+monitor = ${env:MONITOR:eDP1}
+top = true
+enable-ipc = true
 width = 100%
-height = 27
-;offset-x = 1%
-;offset-y = 1%
-radius = 6.0
+height = 30
+offset-x = 0%
+offset-y = 0.5%
+radius = 0.0
 fixed-center = false
 
-background = ${colors.background}
-foreground = ${colors.foreground}
+background = #00000000
+foreground = ${colors.foreground} 
+line-size = 3 line-color = ${colors.red0}
 
-line-size = 3
-line-color = #f00
-
-border-size = 4
+border-size = 0
 border-color = #00000000
 
 padding-left = 0
-padding-right = 2
+padding-right = 0
 
-module-margin-left = 1
-module-margin-right = 2
+module-margin-left = 0
+module-margin-right = 0
 
-font-0 =  UbuntuMono Nerd Font:style=Solid:size=12;1
-;font-1 = Font Awesome 5 Free:style=Solid:size=12;1
-;font-0 = caskaydiacove nerd font:style=Solid:size=12;1
-;font-1 = FontAwesome5Free:style=Regular:size=10;4
-;font-2 = FontAwesome5Brands:style=Regular:size=18;4
-;font-3 = Ubuntu:style=Solid:size=11.5;1
-;font-4 = Hack Nerd Font Mono:style=Regular:size=22;3
 
-modules-left = bspwm i3
-modules-center = mpd
-modules-right = filesystem xbacklight alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
 
-tray-position = right
+
+
+font-0 = FontAwesome5Free:style=Solid:size=10;1
+font-1 = FontAwesome5Brands:style=Regular:size=15;4
+font-2 = Comic Sans MS:style=Solid:size=11.5;1
+font-3 = CaskaydiaCove Nerd Font Mono:style=Solid:size=20;3
+font-4 = CaskaydiaCove Nerd Font Mono:style=Solid:size=20;4
+font-5 = CaskaydiaCove Nerd Font Mono:style=Solid:size=22;5 
+
+
+modules-left = round-left bspwm round-right
+modules-center = round-left song round-right
+modules-right = 
+
+tray-position = 
 tray-padding = 2
-;tray-background = #0063ff
+;tray-background = ${xrdb:fgblue1}
 
-;wm-restack = bspwm
-;wm-restack = i3
+wm-restack = bspwm
 
-;override-redirect = true
+override-redirect = false
 
 ;scroll-up = bspwm-desknext
 ;scroll-down = bspwm-deskprev
 
-;scroll-up = i3wm-wsnext
-;scroll-down = i3wm-wsprev
-
 cursor-click = pointer
 cursor-scroll = ns-resize
+                             
 
-[module/xwindow]
-type = internal/xwindow
-label = %title:0:30:...%
 
-[module/xkeyboard]
-type = internal/xkeyboard
-blacklist-0 = num lock
 
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-prefix-underline = ${colors.secondary}
 
-label-layout = %layout%
-label-layout-underline = ${colors.secondary}
 
-label-indicator-padding = 2
-label-indicator-margin = 1
-label-indicator-background = ${colors.secondary}
-label-indicator-underline = ${colors.secondary}
 
-[module/filesystem]
-type = internal/fs
-interval = 25
-
-mount-0 = /
-
-label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
-label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.foreground-alt}
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
 [module/bspwm]
 type = internal/bspwm
 
-label-focused = %index%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
+pin-workspaces = true
+inline-mode = false
+enable-click = true
+enable-scroll = true
+reverse-scroll = false
+fuzzy-match = false
+
+; ws-icon-[0-9]+ = label;icon
+; Note that the label needs to correspond with the bspwm workspace name
+
+ws-icon-1 = 1;%{F#E66000} 
+ws-icon-2 = 2; 2
+ws-icon-3 = 3; 3
+ws-icon-4 = 4; 4
+ws-icon-5 = 5; 5
+ws-icon-6 = 6; 6
+ws-icon-7 = 7; 7
+ws-icon-8 = 8;%{F#0175C5} %{T6}﬏%{T-}
+ws-icon-9 = 9;%{F#6E85D2} 
+ws-icon-0 = 0;%{F#F70000} 
+ws-icon-10 = 11; 11
+ws-icon-11 = 12; 12
+ws-icon-12 = 13; 13
+ws-icon-13 = 14; 14
+ws-icon-14 = 15; 15
+ws-icon-15 = 16; 16
+ws-icon-16 = 17; 17
+ws-icon-17 = 18; 18
+ws-icon-18 = 19; 19
+ws-icon-19 = 20; 20
+ws-icon-20 = 21;1
+ws-icon-21 = 22;2
+ws-icon-22 = 23;3
+ws-icon-23 = 24;4
+ws-icon-24 = 25;5
+
+
+
+;ws-icon-8 = 8;﬏
+;ws-icon-default =  
+
+
+
+format = <label-state> 
+;format = <label-state> <label-mode>
+label-monitor = %name%
+
+label-mode-padding = 0
+
+label-focused = %icon% 
 label-focused-padding = 2
+label-focused-foreground = ${colors.background}
+label-focused-background = #444
 
-label-occupied = %index%
+label-occupied = %icon%
 label-occupied-padding = 2
+label-occupied-foreground = ${colors.foreground}
+label-occupied-background = ${colors.background}
 
-label-urgent = %index%!
-label-urgent-background = ${colors.alert}
+label-urgent = %icon% 
 label-urgent-padding = 2
+label-urgent-foreground = ${colors.foreground}
+label-urgent-background = ${colors.background}
 
-label-empty = ""
-label-empty-foreground = ${colors.foreground-alt}
+label-empty = 
 label-empty-padding = 2
+label-empty-foreground = ${colors.foreground}
+label-empty-background = ${colors.background}
 
-; Separator in between workspaces
-; label-separator = |
+label-dimmed-foreground = ${colors.foreground}
+label-dimmed-underline = ${colors.black0}
+label-dimmed-focused-foreground = ${colors.foreground}
+label-dimmed-focused-background = ${colors.background}
 
 
-[module/mpd]
-type = internal/mpd
-format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
 
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
 
-label-song-maxlen = 25
-label-song-ellipsis = true
-
-[module/xbacklight]
-type = internal/xbacklight
-
-format = <label> <bar>
-label = BL
-
-bar-width = 10
-bar-indicator = |
-bar-indicator-foreground = #fff
-bar-indicator-font = 2
-bar-fill = ─
-bar-fill-font = 2
-bar-fill-foreground = #9f78e1
-bar-empty = ─
-bar-empty-font = 2
-bar-empty-foreground = ${colors.foreground-alt}
-
-[module/backlight-acpi]
-inherit = module/xbacklight
-type = internal/backlight
-card = intel_backlight
-
-[module/cpu]
-type = internal/cpu
-interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #f90000
-label = %percentage:2%%
-
-[module/memory]
-type = internal/memory
-interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #4bffdc
-label = %percentage_used%%
-
-[module/wlan]
-type = internal/network
-interface = net1
-interval = 3.0
-
-format-connected = <ramp-signal> <label-connected>
-format-connected-underline = #9f78e1
-label-connected = %essid%
-
-format-disconnected =
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
-
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
-ramp-signal-foreground = ${colors.foreground-alt}
-
-[module/eth]
-type = internal/network
-interface = eno1
-interval = 3.0
-
-format-connected-underline = #55aa55
-format-connected-prefix = " "
-format-connected-prefix-foreground = ${colors.foreground-alt}
-label-connected = %local_ip%
-
-format-disconnected =
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
-
-[module/date]
-type = internal/date
-interval = 5
-
-date =
-date-alt = " %Y-%m-%d"
-
-time = %H:%M
-time-alt = %H:%M:%S
-
-format-prefix = 
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #0a6cf5
-
-label = %date% %time%
-
-[module/pulseaudio]
-type = internal/pulseaudio
-
-format-volume = <label-volume> <bar-volume>
-label-volume = VOL %percentage%%
-label-volume-foreground = ${root.foreground}
-
-label-muted = 🔇 muted
-label-muted-foreground = #666
-
-bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
-
-[module/alsa]
-type = internal/alsa
-
-format-volume = <label-volume> <bar-volume>
-label-volume = VOL
-label-volume-foreground = ${root.foreground}
-
-format-muted-prefix = " "
-format-muted-foreground = ${colors.foreground-alt}
-label-muted = sound muted
-
-bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
+; The following labels will be used to indicate the layout/mode
+; for the focused workspace. Requires <label-mode>
+label-monocle = monocle
+label-tiled = tiled
+label-fullscreen = fullscreen
+label-floating = floating
+label-pseudotiled = pseudotiled
+label-locked = locked
+label-sticky = stickey
+label-private = private
+label-sticky-foreground = ${colors.foreground}
+label-locked-foreground = ${colors.foreground}
+label-private-foreground = ${colors.foreground}
 
 
 
@@ -300,105 +201,36 @@ bar-volume-empty-foreground = ${colors.foreground-alt}
 
 
 
-[module/battery]
-type = internal/battery
-battery = BAT0
-adapter = ADP1
-full-at = 98
 
-format-charging = <animation-charging> <label-charging>
-format-charging-underline = #ffb52a
-
-format-discharging = <animation-discharging> <label-discharging>
-format-discharging-underline = ${self.format-charging-underline}
-
-format-full-prefix = " "
-format-full-prefix-foreground = ${colors.foreground-alt}
-format-full-underline = ${self.format-charging-underline}
-
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-foreground = ${colors.foreground-alt}
-
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-foreground = ${colors.foreground-alt}
-animation-charging-framerate = 750
+                  
 
 
 
-animation-discharging-0 = 
-animation-discharging-1 = 
-animation-discharging-2 = 
-;animation-discharging-0 = 
-;animation-discharging-1 = 
-;animation-discharging-2 = 
-animation-discharging-foreground = ${colors.foreground-alt}
-animation-discharging-framerate = 750
+[module/round-left]
+type = custom/text
+content = %{T5}%{T-}
+content-foreground = ${colors.background}
+
+[module/round-right]
+type = custom/text
+content = %{T5}%{T-}
+content-foreground = ${colors.background}
+
+
+[module/song]
+type = custom/script
+interval = 1.0
+
+exec = playerctl --player playerctld metadata --format '祥  {{duration(position) }} / {{ duration(mpris:length) }} | ﴁ  {{ artist }} |   {{ title }}' 2>/dev/null || echo ""
+
+click-left = playerctld shift
+click-right = playerctl -l | rofi -dmenu -location 2 -p "Players" -lines $(playerctl -l | wc -l) -columns 1 -width 35 -sidebar-mode
+
+label-padding = 0
+format-background = ${colors.background}
+
+label = "%output%"
 
 
 
-[module/temperature]
-type = internal/temperature
-thermal-zone = 0
-warn-temperature = 60
 
-format = <ramp> <label>
-format-underline = #f50a4d
-format-warn = <ramp> <label-warn>
-format-warn-underline = ${self.format-underline}
-
-label = %temperature-c%
-label-warn = %temperature-c%
-label-warn-foreground = ${colors.secondary}
-
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = ${colors.foreground-alt}
-
-
-[module/powermenu]
-type = custom/menu
-
-expand-right = true
-
-format-spacing = 1
-
-label-open = 
-label-open-foreground = ${colors.secondary}
-label-close =  cancel
-label-close-foreground = ${colors.secondary}
-label-separator = |
-label-separator-foreground = ${colors.foreground-alt}
-
-menu-0-0 = reboot
-menu-0-0-exec = menu-open-1
-menu-0-1 = power off
-menu-0-1-exec = menu-open-2
-
-menu-1-0 = cancel
-menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
-menu-1-1-exec = sudo reboot
-
-menu-2-0 = power off
-menu-2-0-exec = sudo poweroff
-menu-2-1 = cancel
-menu-2-1-exec = menu-open-0
-
-[settings]
-screenchange-reload = true
-;compositing-background = xor
-;compositing-background = screen
-;compositing-foreground = source
-;compositing-border = over
-;pseudo-transparency = false
-
-[global/wm]
-margin-top = 5
-margin-bottom = 5
-
-; vim:ft=dosini
