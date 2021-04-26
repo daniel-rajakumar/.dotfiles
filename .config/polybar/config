@@ -296,14 +296,15 @@ label-padding-left = 0
 [module/date]
 type = internal/date
 interval = 1.0
-label-padding = 4
+label-padding-right = 4
+label-padding-left = 3
 label-background= ${colors.background}
 
 date = 
-time = %{F#C678DD}  %{F-} %I:%M %p
+time = %{F#E06C75} %{F-} %I:%M %p
 
-date-alt =  %{F#C678DD} %{F-} %a, %b %d
-time-alt = | %{F#C678DD} %{F-} %I:%M:%S %p
+date-alt = %{F#E06C75} %{F-} %a, %b %d
+time-alt = |  %{F#E06C75} %{F-} %I:%M:%S %p
 
 label = %date% %time%
 
@@ -333,7 +334,7 @@ format-discharging-background = ${colors.background}
 
 format-full-prefix = %{F#98C379}" "
 format-full-prefix-foreground = ${colors.foreground}
-format-full-underline = ${colors.underline}
+format-full-background = ${colors.background}
 format-foreground = ${colors.foreground}
 format-background = ${colors.background}
 
@@ -359,10 +360,14 @@ animation-charging-framerate = 500
 
 
 
+
+
+
+
 [module/backlight]
 ;https://github.com/jaagr/polybar/wiki/Module:-xbacklight
 type = internal/xbacklight
-format = "<bar>     "
+format = "<bar>    "
 format-prefix = "  "
 format-prefix-foreground = ${colors.foreground}
 format-prefix-background = ${colors.background}
@@ -401,20 +406,20 @@ format-volume =  <ramp-volume><label-volume>
 
 format-volume-background = ${colors.background}
 
-label-volume = "%percentage%% "
+label-volume = "%percentage%%"
 label-volume-padding = 1
 label-volume-foreground = ${root.foreground}
 label-volume-background = ${colors.background}
 
 
-label-muted = %{F#FF7A85}  MUTED
+label-muted = %{F#C678DD}  MUTED
 label-muted-foreground = ${colors.foreground}
 format-muted-background = ${colors.background}
 label-muted-padding = 1
 
-ramp-volume-0 = %{F#FF7A85}  
-ramp-volume-1 = %{F#FF7A85}  
-ramp-volume-2 = %{F#FF7A85}  
+ramp-volume-0 = %{F#C678DD}  
+ramp-volume-1 = %{F#C678DD}  
+ramp-volume-2 = %{F#C678DD}  
 ramp-background = ${colors.background)
 ramp-volume-padding-left = 0
 
@@ -452,7 +457,7 @@ interval = 1.0
 
 exec =  sh ~/.config/polybar/scripts/bluetooth.sh
 
-label-padding = 2
+label-padding-right = 2
 format-background = ${colors.background}
 
 label = "%output% "
@@ -465,11 +470,11 @@ click-left = sh ~/.config/polybar/scripts/bluetooth_click_left.sh
 
 [module/network]
 type = custom/script
-interval = 0.1
+interval = 1
 
 exec = sh ~/.config/polybar/scripts/network.sh
 
-label-padding = 2
+label-padding-right = 3.5
 format-background = ${colors.background}
 
 label = %output%

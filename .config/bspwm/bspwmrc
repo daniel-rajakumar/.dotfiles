@@ -11,8 +11,8 @@ killall fusuma && fusuma &
 fusuma &
 
 #wallpaper
-nitrogen --head=1 --random ~/Pictures/wallpapers/bspwm/wallpaperflare.com_wallpaper.jpg --set-zoom-fill &
-nitrogen --head=0 --random ~/Pictures/wallpapers/bspwm/wallpaperflare.com_wallpaper.jpg --set-zoom-fill &
+nitrogen --head=1 --random ~/Pictures/wallpapers/bspwm/fantasy-landscape.jpg --set-auto &
+nitrogen --head=0 --random ~/Pictures/wallpapers/bspwm/fantasy-landscape.jpg --set-auto &
 
 # swap CapsLk with esc 
 setxkbmap -option caps:swapescape &

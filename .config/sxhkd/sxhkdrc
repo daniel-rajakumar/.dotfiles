@@ -198,3 +198,21 @@ super + b
 
 
 
+
+
+
+# toggle top polybar 
+super + bracketleft 
+    sh ~/.config/polybar/scripts/hideTopBar.sh
+
+
+
+
+# toggle polybar bottom
+super + bracketright 
+    sh ~/.config/polybar/scripts/hideBottomBar.sh
+
+
+
+
+

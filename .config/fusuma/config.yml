@@ -6,9 +6,9 @@ swipe:
         command: "pamixer -d 2 && notify-send 'volume - down'" # volume dec
   4:
     up:
-      command: "xbacklight +5 && notify-send 'brightness - up'" # brightness inc 
+      command: "xbacklight +2 && notify-send 'brightness - up'" # brightness inc 
     down:
-      command: "xbacklight -5 && notify-send 'brightness - down'" # brightness dec
+      command: "xbacklight -2 && notify-send 'brightness - down'" # brightness dec
 
 
 
