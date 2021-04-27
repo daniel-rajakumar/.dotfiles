@@ -97,6 +97,67 @@ cursor-scroll = ns-resize
 
 
 
+
+[bar/bottom]
+monitor = ${env:MONITOR:eDP1}
+bottom = true
+enable-ipc = true
+width = 100%
+height = 30
+offset-x = 0%
+offset-y = 0.5%
+radius = 0.0
+fixed-center = false
+
+background = #00000000
+foreground = ${colors.foreground} 
+line-size = 3 line-color = ${colors.red0}
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 0
+module-margin-right = 0
+
+
+
+
+
+font-0 = FontAwesome5Free:style=Solid:size=11;1
+font-1 = FontAwesome5Brands:style=Regular:size=15;4
+font-2 = Comic Sans MS:style=Solid:size=11.5;1
+font-3 = CaskaydiaCove Nerd Font Mono:style=Solid:size=20;3
+font-4 = CaskaydiaCove Nerd Font Mono:style=Solid:size=20;4
+font-5 = CaskaydiaCove Nerd Font Mono:style=Solid:size=22;5 
+
+
+modules-left = power package-updates filesystem memory temperature cpu round-right
+modules-center = round-left xwindow round-right
+modules-right = weather round-left
+
+tray-position = tray-padding = 2 
+;tray-background = ${xrdb:fgblue1} 
+wm-restack = bspwm
+
+override-redirect = false
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+                             
+
+
+
+
+
+
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 [module/bspwm]
 type = internal/bspwm
@@ -479,4 +540,182 @@ format-background = ${colors.background}
 
 label = %output%
 click-left = sh ~/.config/polybar/scripts/network_click_left.sh 
+
+
+
+
+
+
+
+
+
+[module/xwindow]
+type = internal/xwindow
+
+format-background = ${colors.background}
+format-padding = 2
+
+format = <label>
+label = 缾  %title%  缾
+label-maxlen = 150
+
+
+
+
+
+
+
+
+
+[module/memory]
+;https://github.com/jaagr/polybar/wiki/Module:-memory
+type = internal/memory
+interval = 0.5
+
+label = %percentage_used%%
+bar-used-indicator =
+bar-used-width = 10
+bar-used-foreground-0 = #3384d0
+bar-used-fill = 
+bar-used-empty = 
+bar-used-empty-foreground = #ffffff
+
+format = <label> 
+format-prefix = "   "
+format-prefix-foreground = ${colors.foreground}
+format-foreground = ${colors.foreground} 
+format-background = ${colors.background}
+format-padding = 2
+
+
+
+
+
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+
+hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input
+
+warn-temperature = 70
+format = <ramp> <label>
+
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+format-underline = ${colors.underline}
+
+format-warn = <ramp> <label-warn>
+format-warn-underline = ${colors.underline} 
+
+label = %temperature%
+label-padding-right = 2
+
+label-warn = %temperature%
+label-warn-foreground = ${colors.foreground}
+label-warn-padding-right = 2
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-3 = 
+ramp-4 = 
+ramp-foreground =${colors.foreground}
+
+ramp-padding-left = 2
+
+
+
+
+
+
+
+
+
+[module/filesystem]
+type = internal/fs
+mount-0 = /
+interval = 1 
+fixed-values = false
+spacing = 4
+
+label-padding-right = 50
+
+format-mounted = <label-mounted>
+format-mounted-foreground = ${colors.foreground}
+format-mounted-background = ${colors.background}
+format-mounted-padding = 2
+
+
+label-mounted =  %free%
+#label-mounted = %mountpoint%: %free%
+
+label-unmounted = %mountpoint% not mounted
+format-unmounted-foreground = ${colors.foreground}
+format-unmounted-background = ${colors.background}
+
+
+
+
+
+
+[module/cpu]
+type = internal/cpu
+interval = 3
+
+label-padding-left = 3
+format-background = ${colors.background}
+
+format = <label> 
+
+label =  %percentage%%
+
+
+
+
+
+[module/package-updates]
+type = custom/script
+exec = pacman -Qu | wc -l
+interval = 1000
+label = %output%
+
+format-padding = 2
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+
+format-prefix = "  "
+format-prefix-foreground = ${colors.foreground} 
+format-underline = ${colors.underline}
+
+
+
+
+[module/weather]
+type = custom/script
+interval = 1.0
+
+exec = python3 ~/.config/polybar/scripts/weather.py 2> /dev/null || echo uh-oh, you are offline
+
+label-padding = 2
+format-background = ${colors.background}
+
+click-left = alacritty --hold -e curl wttr.in 
+
+label =   %output%
+
+
+
+[module/power]
+type = custom/script
+
+exec = echo "%{F#FF7A85}   %{F-} |"
+double-click-left = reboot
+double-click-right = shutdown now
+
+label-padding = 2.5
+label-background = ${colors.background}
+label = %output%
+
+
 
