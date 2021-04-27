@@ -48,7 +48,7 @@ height = 30
 offset-x = 0%
 offset-y = 0.5%
 radius = 0.0
-fixed-center = false
+fixed-center = true
 
 background = #00000000
 foreground = ${colors.foreground} 
@@ -99,60 +99,30 @@ cursor-scroll = ns-resize
 
 
 [bar/bottom]
-monitor = ${env:MONITOR:eDP1}
+inherit = bar/top
 bottom = true
-enable-ipc = true
-width = 100%
-height = 30
-offset-x = 0%
-offset-y = 0.5%
-radius = 0.0
-fixed-center = false
-
-background = #00000000
-foreground = ${colors.foreground} 
-line-size = 3 line-color = ${colors.red0}
-
-border-size = 0
-border-color = #00000000
-
-padding-left = 0
-padding-right = 0
-
-module-margin-left = 0
-module-margin-right = 0
-
-
-
-
-
-font-0 = FontAwesome5Free:style=Solid:size=11;1
-font-1 = FontAwesome5Brands:style=Regular:size=15;4
-font-2 = Comic Sans MS:style=Solid:size=11.5;1
-font-3 = CaskaydiaCove Nerd Font Mono:style=Solid:size=20;3
-font-4 = CaskaydiaCove Nerd Font Mono:style=Solid:size=20;4
-font-5 = CaskaydiaCove Nerd Font Mono:style=Solid:size=22;5 
-
 
 modules-left = power package-updates filesystem memory temperature cpu round-right
 modules-center = round-left xwindow round-right
-modules-right = weather round-left
+modules-right = round-left network_speed weather
 
-tray-position = tray-padding = 2 
-;tray-background = ${xrdb:fgblue1} 
-wm-restack = bspwm
-
-override-redirect = false
-
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
-
-cursor-click = pointer
-cursor-scroll = ns-resize
+tray-position = right 
+tray-padding = 4
+tray-background = ${colors.background}
                              
 
 
 
+
+
+[bar/top1]
+inherit = bar/top
+monitor = ${env:MONITOR:HDMI1}
+
+
+[bar/bottom1]
+inherit = bar/bottom
+monitor = ${env:MONITOR:HDMI1}
 
 
 
@@ -556,7 +526,7 @@ format-background = ${colors.background}
 format-padding = 2
 
 format = <label>
-label = 缾  %title%  缾
+label = %{F#98C379}缾%{F-}  %title% %{F#98C379}缾
 label-maxlen = 150
 
 
@@ -581,7 +551,7 @@ bar-used-empty = 
 bar-used-empty-foreground = #ffffff
 
 format = <label> 
-format-prefix = "   "
+format-prefix = "%{F#C678DD}   "
 format-prefix-foreground = ${colors.foreground}
 format-foreground = ${colors.foreground} 
 format-background = ${colors.background}
@@ -615,11 +585,11 @@ label-warn = %temperature%
 label-warn-foreground = ${colors.foreground}
 label-warn-padding-right = 2
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-3 = 
-ramp-4 = 
+ramp-0 = %{F#56B6C2}
+ramp-1 = %{F#56B6C2}
+ramp-2 = %{F#56B6C2}
+ramp-3 = %{F#56B6C2}
+ramp-4 = %{F#56B6C2}
 ramp-foreground =${colors.foreground}
 
 ramp-padding-left = 2
@@ -647,7 +617,7 @@ format-mounted-background = ${colors.background}
 format-mounted-padding = 2
 
 
-label-mounted =  %free%
+label-mounted = %{F#98C379}  %{F-} %free%
 #label-mounted = %mountpoint%: %free%
 
 label-unmounted = %mountpoint% not mounted
@@ -668,7 +638,7 @@ format-background = ${colors.background}
 
 format = <label> 
 
-label =  %percentage%%
+label = %{F#61AFEF}%{F-} %percentage%%
 
 
 
@@ -684,9 +654,8 @@ format-padding = 2
 format-foreground = ${colors.foreground}
 format-background = ${colors.background}
 
-format-prefix = "  "
+format-prefix = "%{F#E5C07B}  "
 format-prefix-foreground = ${colors.foreground} 
-format-underline = ${colors.underline}
 
 
 
@@ -697,12 +666,50 @@ interval = 1.0
 
 exec = python3 ~/.config/polybar/scripts/weather.py 2> /dev/null || echo uh-oh, you are offline
 
-label-padding = 2
 format-background = ${colors.background}
 
-click-left = alacritty --hold -e curl wttr.in 
+click-left = kitty --hold -e curl wttr.in 
 
-label =   %output%
+label = %{F#E5C07B}  %{F-} %output%
+label-padding-left = 6
+label-padding-right = 2
+
+
+
+
+
+[module/network_speed]
+type = internal/network
+interface = wlp0s20f3
+interval = 3.0
+
+format-connected = %{F#98C379} %{F-} <ramp-signal>   |   <label-connected>
+;format-connected-padding = 5
+format-connected-background = ${colors.background}
+label-connected = %{F#E06C75} %{F-}%upspeed%  |  %{F#61afef} %{F-}%downspeed%
+;label-connected =   %essid%   %upspeed%  %downspeed%
+
+;format-disconnected =
+format-disconnected = <label-disconnected>
+format-disconnected-background = ${colors.background}
+label-disconnected =   %essid% disconnected
+label-disconnected-foreground = ${colors.foreground}
+
+
+ramp-signal-0 = 0 
+ramp-signal-1 = 1
+ramp-signal-2 = 2
+ramp-signal-3 = 3
+ramp-signal-4 = 4
+ramp-signal-5 = 5
+ramp-signal-6 = 6
+ramp-signal-7 = 7
+ramp-signal-8 = 8
+ramp-signal-9 = 9
+ramp-signal-foreground = ${colors.foreground}
+
+
+
 
 
 
