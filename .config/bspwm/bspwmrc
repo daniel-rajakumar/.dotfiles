@@ -5,14 +5,17 @@ sxhkd &
 killall polybar
 polybar top &
 polybar bottom &
+polybar top1 &
+polybar bottom1 &
 dunst &
 picom --experimental-backends &
 killall fusuma && fusuma &
 fusuma &
+redshift -l $LOCATION_LAT:$LOCATION_LON &
 
 #wallpaper
-nitrogen --head=1 --random ~/Pictures/wallpapers/bspwm/fantasy-landscape.jpg --set-auto &
-nitrogen --head=0 --random ~/Pictures/wallpapers/bspwm/fantasy-landscape.jpg --set-auto &
+#nitrogen --head=1 --random ~/Pictures/wallpapers/bspwm/fantasy-landscape_darker.jpg --set-auto &
+nitrogen --head=0 --random ~/Pictures/wallpapers/bspwm/fantasy-landscape_darker.jpg --set-auto &
 
 # swap CapsLk with esc 
 setxkbmap -option caps:swapescape &
