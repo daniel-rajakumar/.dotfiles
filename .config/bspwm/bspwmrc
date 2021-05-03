@@ -14,7 +14,7 @@ fusuma &
 redshift -l $LOCATION_LAT:$LOCATION_LON &
 
 #wallpaper
-#nitrogen --head=1 --random ~/Pictures/wallpapers/bspwm/fantasy-landscape_darker.jpg --set-auto &
+nitrogen --head=1 --random ~/Pictures/wallpapers/bspwm/green_circle.png --set-auto &
 nitrogen --head=0 --random ~/Pictures/wallpapers/bspwm/fantasy-landscape_darker.jpg --set-auto &
 
 # swap CapsLk with esc 
