@@ -122,10 +122,10 @@
  *
  */
 * {
-  font-family: 'Google Sans', sans-serif !important; }
+  font-family: 'comic sans ms', sans-serif !important; }
 
 ::selection {
-  background: #859fbf;
+  background: #34be5b;
   text-shadow: none; }
 
 body,
