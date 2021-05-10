@@ -14,8 +14,8 @@ fusuma &
 redshift -l $LOCATION_LAT:$LOCATION_LON &
 
 #wallpaper
-nitrogen --head=1 --random ~/Pictures/wallpapers/bspwm/green_circle.png --set-auto &
-nitrogen --head=0 --random ~/Pictures/wallpapers/bspwm/fantasy-landscape_darker.jpg --set-auto &
+nitrogen --head=1 --random ~/MEGA/Pictures/wallpapers/bspwm/green_circle.png --set-auto &
+nitrogen --head=0 --random ~/MEGA/Pictures/wallpapers/bspwm/fantasy-landscape_darker.jpg --set-auto &
 
 # swap CapsLk with esc 
 setxkbmap -option caps:swapescape &
@@ -67,4 +67,10 @@ bspc config urgent_border_color           "#555555"
 #window rules (https://www.reddit.com/r/bspwm/comments/ka34xr/bspc_rule_based_on_net_wm_name/gfe8rb4/)
 bspc rule -a discord desktop='9' 
 bspc rule -a "*:*:YouTube Music" desktop=0
+
+
+
+
+# temp
+bspc rule -a "App" state=floating
 
