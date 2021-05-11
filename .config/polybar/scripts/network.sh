@@ -1,7 +1,7 @@
 #!/bin/sh
 # This shell script is PUBLIC DOMAIN. You may do whatever you want with it.
 
-NAME=$(iwgetid -r)
+NAME=$(/usr/sbin/iwgetid -r)
 
 if [ -z "$NAME" ]; then
     echo 

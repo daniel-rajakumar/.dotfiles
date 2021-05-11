@@ -40,7 +40,7 @@ white1 	 = #CFD7E6
 
 
 [bar/top]
-monitor = ${env:MONITOR:eDP1}
+monitor = ${env:MONITOR:eDP-1}
 top = true
 enable-ipc = true
 width = 100%
@@ -67,11 +67,11 @@ module-margin-right = 0
 
 
 
-font-0 = FontAwesome5Free:style=Solid:size=11;1
-font-1 = FontAwesome5Brands:style=Regular:size=15;4
-font-2 = Comic Sans MS:style=Solid:size=11.5;1
-font-3 = CaskaydiaCove Nerd Font Mono:style=Solid:size=20;3
-font-4 = CaskaydiaCove Nerd Font Mono:style=Solid:size=20;4
+font-0 = Comic Sans MS:style=Solid:size=11.5;1
+font-1 = FontAwesome5Free:style=Solid:size=11;1
+font-2 = FontAwesome5Brands:style=Regular:size=15;4
+font-3 = CaskaydiaCove Nerd Font Mono:style=Solid:size=20;5
+font-4 = CaskaydiaCove Nerd Font Mono:style=Solid:size=20;7
 font-5 = CaskaydiaCove Nerd Font Mono:style=Solid:size=22;5 
 
 
@@ -117,12 +117,12 @@ tray-background = ${colors.background}
 
 [bar/top1]
 inherit = bar/top
-monitor = ${env:MONITOR:HDMI1}
+monitor = ${env:MONITOR:HDMI-1}
 
 
 [bar/bottom1]
 inherit = bar/bottom
-monitor = ${env:MONITOR:HDMI1}
+monitor = ${env:MONITOR:HDMI-1}
 
 
 
@@ -255,7 +255,7 @@ content-foreground = ${colors.background}
 type = custom/script
 interval = 1.0
 
-exec = playerctl --player playerctld metadata --format '%{F#61AFEF} 祥%{F-}  {{duration(position) }} / {{ duration(mpris:length) }} | %{F#98C379}  ﴁ%{F-} {{ artist }} | %{F#C678DD}   %{F-} {{ title }}' 2>/dev/null || echo " $(echo "No audio") "
+exec = playerctl --player playerctld metadata --format '%{F#61AFEF} 祥%{F-}  {{duration(position) }} / {{ duration(mpris:length) }} | %{F#98C379}  ﴁ%{F-} {{ artist }} |   %{F#C678DD}%{T2} %{T-}%{F-}{{ title }}' 2>/dev/null || echo " $(echo "No audio") "
 
 click-left = playerctld shift
 click-right = playerctl -l | rofi -dmenu -location 2 -p "Players" -lines $(playerctl -l | wc -l) -columns 1 -width 35 -sidebar-mode
@@ -646,6 +646,7 @@ label = %{F#61AFEF}%{F-} %percentage%%
 
 [module/package-updates]
 type = custom/script
+;exec = pacman -Qu | wc -l
 exec = pacman -Qu | wc -l
 interval = 1000
 label = %output%
