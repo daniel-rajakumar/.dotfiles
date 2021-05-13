@@ -2,7 +2,7 @@
 
 EXTENSIONS=$(cat ~/scripts/storage/extensions.txt)
 
-read -p "pull = 'PULL' || push = <return> ==> " input
+read -p "pull = 'pull' || push = <return> ==> " input
 
 if [ -z $input ]; then
 	code --list-extensions > $HOME/scripts/storage/extensions.txt

@@ -75,22 +75,20 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    # wget 
-    # vim
-    # neofetch
-    # flameshot
-    # firefox
-    # discord
-    # nixos = { betterdiscordctl }
-    # betterdiscordctl
-    # virtualbox
-    # tor
-    # brave
-    # git
-    # neovim
+  environment.systemPackages = with pkgs; [ ];
 
+
+  #fonts
+  fonts.fonts = with pkgs; [
+     font-awesome-ttf 
+     corefonts  # microsoft fonts
+
+     # nerd fonts
+     (nerdfonts.override { fonts = [ 
+       "CascadiaCode"
+     ]; })
   ];
+
 
   nixpkgs.config.allowUnfree = true; # allow unfree packages
 

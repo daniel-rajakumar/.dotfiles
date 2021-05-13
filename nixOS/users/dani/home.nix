@@ -21,6 +21,16 @@
 
   nixpkgs.config.allowUnfree = true;
 
+
+  #fonts
+  home.fonts = with pkgs; [
+     # nerd fonts
+     (nerdfonts.override { fonts = [
+       "Cascadia Code"
+     ]; })                                            
+  ];
+
+
   home.packages = with pkgs; [
     #browser
     firefox
@@ -28,6 +38,7 @@
     # editors
     vim
     neovim
+    vscode
 
     # terminal
     kitty
@@ -50,6 +61,8 @@
     git
     yadm
     killall
+    gnome3.gnome-keyring
+    qtkeychain
 
   ];
 
