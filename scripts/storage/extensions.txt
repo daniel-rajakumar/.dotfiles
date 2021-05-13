@@ -1,8 +1,5 @@
 DavidAnson.vscode-markdownlint
 ms-vscode-remote.remote-wsl
-ms-vsliveshare.vsliveshare
-ms-vsliveshare.vsliveshare-audio
-ms-vsliveshare.vsliveshare-pack
 PKief.material-icon-theme
 redhat.java
 VisualStudioExptTeam.vscodeintellicode
