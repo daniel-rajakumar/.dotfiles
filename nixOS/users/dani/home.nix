@@ -22,15 +22,8 @@
   nixpkgs.config.allowUnfree = true;
 
 
-  #fonts
-  home.fonts = with pkgs; [
-     # nerd fonts
-     (nerdfonts.override { fonts = [
-       "Cascadia Code"
-     ]; })                                            
-  ];
 
-
+  nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;
   home.packages = with pkgs; [
     #browser
     firefox
@@ -53,6 +46,7 @@
 
     # other
     discord
+    megasync
 
     # tools
     wget
@@ -63,6 +57,13 @@
     killall
     gnome3.gnome-keyring
     qtkeychain
+    playerctl
+    wirelesstools
+    bluez
+    # plasma-browser-integration
+    # plasma5.plasma-browser-integration
+    plasma-browser-integration
+    # bluetoothctl
 
   ];
 
