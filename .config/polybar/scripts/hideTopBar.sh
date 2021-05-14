@@ -12,7 +12,7 @@ if [ ! -e $TOGGLE ]; then
 else
     rm $TOGGLE
         polybar-msg -p $ID cmd show
-        bspc config -m focused top_padding 30
+        bspc config -m focused top_padding 35
 fi
 
 

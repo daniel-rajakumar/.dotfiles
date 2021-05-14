@@ -4,8 +4,7 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
+  # Home Manager needs a bit of information about you and the paths it should manage.
   home.username = "dani";
   home.homeDirectory = "/home/dani";
 
@@ -47,6 +46,13 @@
     # other
     discord
     megasync
+    picom
+    fusuma
+    # libinput
+    # libinput-gestures
+    xdotool
+    pamixer
+    qalculate-gtk
 
     # tools
     wget
@@ -60,10 +66,11 @@
     playerctl
     wirelesstools
     bluez
-    # plasma-browser-integration
-    # plasma5.plasma-browser-integration
     plasma-browser-integration
     # bluetoothctl
+
+    # langs
+    # ruby
 
   ];
 

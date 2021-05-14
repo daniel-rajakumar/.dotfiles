@@ -18,8 +18,8 @@
   boot.loader.grub.efiSupport = true;
   boot.loader.grub.useOSProber = true;
 
-  networking = {
- 	hostName = "nixos"; # Define your hostname.
+  networking = { 
+  	hostName = "nixos"; # Define your hostname.
         networkmanager.enable = true;
   };
 
@@ -62,7 +62,9 @@
 
   # Enable sound.
   sound.enable = true;
+  hardware.bluetooth.enable = true;
   hardware.pulseaudio.enable = true;
+  hardware.enableRedistributableFirmware = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
@@ -70,7 +72,9 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.dani = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "audio"]; # Enable ‘sudo’ for the user.
+    shell = pkgs.zsh;
+
   };
 
   # List packages installed in system profile. To search, run:
@@ -80,6 +84,7 @@
 
   #fonts
   fonts.fonts = with pkgs; [
+
      font-awesome-ttf 
      corefonts  # microsoft fonts
 
@@ -90,9 +95,11 @@
   ];
 
 
+  nixpkgs.config.pulseaudio = true;
   nixpkgs.config.allowUnfree = true; # allow unfree packages
 
   # Some programs need SUID wrappers, can be configured further or are
+  programs.zsh.enable = true;
   # started in user sessions.
   # programs.mtr.enable = true;
   # programs.gnupg.agent = {

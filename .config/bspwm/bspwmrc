@@ -2,7 +2,9 @@
 
 #autostart 
 sxhkd &
-killall polybar
+killall polybar && killall polybar
+killall fusuma
+
 polybar top &
 polybar bottom &
 polybar top1 &
@@ -10,7 +12,7 @@ polybar bottom1 &
 dunst &
 picom --experimental-backends &
 killall fusuma && fusuma &
-/usr/bin/fusuma.ruby2.7 &
+fusuma &
 redshift -l $LOCATION_LAT:$LOCATION_LON &
 
 #wallpaper
