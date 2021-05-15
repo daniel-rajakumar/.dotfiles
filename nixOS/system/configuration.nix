@@ -12,11 +12,13 @@
   # Use the systemd-boot EFI boot loader.
   # boot.loader.systemd-boot.enable = true;
   # boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.grub.enable = true;
-  boot.loader.grub.devices = [ "nodev" ];
-  boot.loader.grub.efiInstallAsRemovable = true;
-  boot.loader.grub.efiSupport = true;
-  boot.loader.grub.useOSProber = true;
+  boot.loader.grub = {
+ 	enable = true;
+        devices = [ "nodev" ];
+        efiInstallAsRemovable = true;
+        efiSupport = true;
+        useOSProber = true;
+  };
 
   networking = { 
   	hostName = "nixos"; # Define your hostname.
@@ -44,14 +46,13 @@
   };
 
   # Enable the X11 windowing system# .
-  services.xserver.enable = true;
+  services.xserver = {
+ 	enable = true;
+	displayManager.sddm.enable = true;
+	desktopManager.plasma5.enable = true;
+	windowManager.bspwm.enable = true;
+  };
 
-
-  # Enable the Plasma 5 Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
-  services.xserver.windowManager.bspwm.enable = true;
-  
 
   # Configure keymap in X11
   services.xserver.layout = "us";
@@ -64,6 +65,7 @@
   sound.enable = true;
   hardware.bluetooth.enable = true;
   hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.package = pkgs.pulseaudioFull;
   hardware.enableRedistributableFirmware = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -71,8 +73,8 @@
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.dani = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "audio"]; # Enable ‘sudo’ for the user.
+   isNormalUser = true;
+    extraGroups = [ "wheel" "networkmanager" "audio" "input" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
 
   };
@@ -99,7 +101,19 @@
   nixpkgs.config.allowUnfree = true; # allow unfree packages
 
   # Some programs need SUID wrappers, can be configured further or are
-  programs.zsh.enable = true;
+  programs.zsh = {
+    enable = true;
+    autosuggestions.enable = true;
+    enableCompletion = true;
+
+
+
+    shellAliases = (import ./configs/aliases.nix);
+
+    # shellAliases = { ll="exa -alh --icons --git --color=always --group-directories-first -s Extension"; # my preferred listing ls="exa -a --icons --git --color=always --group-directories-first -s Extension";  # all files and dirs tree="exa -aT --icons --git  --color=always --group-directories-first"; # tree listing };
+  };
+
+
   # started in user sessions.
   # programs.mtr.enable = true;
   # programs.gnupg.agent = {

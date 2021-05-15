@@ -26,6 +26,7 @@
   home.packages = with pkgs; [
     #browser
     firefox
+    brave
 
     # editors
     vim
@@ -48,17 +49,20 @@
     megasync
     picom
     fusuma
-    # libinput
+    libinput-gestures
+    libinput
     # libinput-gestures
     xdotool
     pamixer
     qalculate-gtk
+    obs-studio
 
     # tools
     wget
     neofetch
     flameshot
     git
+    htop
     yadm
     killall
     gnome3.gnome-keyring
@@ -67,12 +71,23 @@
     wirelesstools
     bluez
     plasma-browser-integration
+    exa
+    bat
+    xorg.xev
     # bluetoothctl
 
     # langs
     # ruby
 
   ];
+
+   programs.zsh.oh_my_zsh = {
+      enable = true;
+ 
+ 
+      plugins = [ "git" "vi-mode" ];
+      theme = "nicoulaj"; # add a new line for the theme
+    }
 
  
 }
