@@ -26,6 +26,11 @@
   psmem="ps auxf | sort -nr -k 4";
   psmem10="ps auxf | sort -nr -k 4 | head -10";
 
+
+  #nixOS
+  hsync = "home-manager switch -f $HOME/nixOS/users/dani/home.nix";
+  ssync = "sudo nixos-rebuild switch -I nixos-config=$HOME/nixOS/system/configuration.nix";
+
 }
  
 
