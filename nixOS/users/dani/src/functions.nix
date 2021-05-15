@@ -20,6 +20,6 @@ gsync () {
     yadm commit -m "$command"
     yadm pull
     yadm push
-    notify-send "GIT" "git synced"
+    notify-desktop "GIT" "git synced"
 }
 
