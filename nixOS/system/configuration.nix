@@ -76,13 +76,13 @@
    isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "audio" "input" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
-
+    # editor = pkgs.vim;
   };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [ ];
-
+  environment.variables.EDITOR = "nvim";
 
   #fonts
   fonts.fonts = with pkgs; [
@@ -99,6 +99,7 @@
 
   nixpkgs.config.pulseaudio = true;
   nixpkgs.config.allowUnfree = true; # allow unfree packages
+
 
 
   # started in user sessions.

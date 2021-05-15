@@ -107,6 +107,7 @@
     };
     initExtraBeforeCompInit = ''
       ${builtins.readFile ~/nixOS/users/dani/src/functions.nix}
+      bindkey -M vicmd "^V" edit-command-line
     '';
  
 
