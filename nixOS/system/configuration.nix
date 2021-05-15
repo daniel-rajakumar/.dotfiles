@@ -100,19 +100,6 @@
   nixpkgs.config.pulseaudio = true;
   nixpkgs.config.allowUnfree = true; # allow unfree packages
 
-  # Some programs need SUID wrappers, can be configured further or are
-  programs.zsh = {
-    enable = true;
-    autosuggestions.enable = true;
-    enableCompletion = true;
-
-
-
-    shellAliases = (import ./configs/aliases.nix);
-
-    # shellAliases = { ll="exa -alh --icons --git --color=always --group-directories-first -s Extension"; # my preferred listing ls="exa -a --icons --git --color=always --group-directories-first -s Extension";  # all files and dirs tree="exa -aT --icons --git  --color=always --group-directories-first"; # tree listing };
-  };
-
 
   # started in user sessions.
   # programs.mtr.enable = true;

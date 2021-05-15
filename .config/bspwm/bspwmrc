@@ -3,7 +3,7 @@
 #autostart 
 sxhkd &
 killall polybar && killall polybar
-killall fusuma
+# killall fusuma
 
 polybar top &
 polybar bottom &
@@ -11,7 +11,6 @@ polybar top1 &
 polybar bottom1 &
 dunst &
 picom --experimental-backends &
-killall fusuma && fusuma &
 fusuma &
 redshift -l $LOCATION_LAT:$LOCATION_LON &
 

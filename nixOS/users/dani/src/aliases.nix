@@ -26,11 +26,6 @@
   psmem="ps auxf | sort -nr -k 4";
   psmem10="ps auxf | sort -nr -k 4 | head -10";
 
-  # xev - show only the key code
-  # xev="xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'";
-
-
-
 }
  
 
