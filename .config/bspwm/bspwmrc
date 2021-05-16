@@ -3,7 +3,7 @@
 #autostart 
 sxhkd &
 killall polybar && killall polybar
-# killall fusuma
+killall libinput-debug-events
 
 polybar top &
 polybar bottom &

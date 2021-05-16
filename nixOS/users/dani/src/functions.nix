@@ -80,3 +80,12 @@ stopwatch(){
 }
 
 
+lol(){
+ for i in {1..127}                         
+ do
+  bash -c "sleep 0.3 && xdotool key alt+Return; sleep 0 && xdotool key alt+k";
+ done
+
+ xdotool keyup alt
+
+}

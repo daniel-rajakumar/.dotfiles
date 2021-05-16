@@ -9,11 +9,10 @@
 
   nixpkgs.config.allowUnfree = true;
 
-
   nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;
   home.packages = with pkgs; [
     #browser
-    #firefox
+    # firefox
     brave
 
     # editors
@@ -72,12 +71,68 @@
   programs.firefox = {
     enable = true;
     profiles = {
+
       myprofile = {
+      userChrome = ''
+        /* hide sidebar's scrollbar */
+        #sidebar {margin-right: -15px !important;}
+
+        /* hide top bar */
+        #TabsToolbar { visibility: collapse !important; }
+
+        /* makes the sidebar hoverable */
+        :root {
+            --sidebar-min-width: 30px;
+            --sidebar-visible-width: 300px;
+          }
+
+          #sidebar-header {
+            overflow: hidden !important;
+          }
+
+          #sidebar-box #sidebar-header {
+            display: none !important;
+          }
+
+          #sidebar,
+          #sidebar-header {
+            position: relative !important;
+            min-width: var(--sidebar-min-width) !important;
+            max-width: var(--sidebar-min-width) !important;
+            transition: .2s ease .25s;
+            z-index:1;
+          }
+
+          #sidebar-box:hover :-moz-any(#sidebar,#sidebar-header) {
+            background-color: var(--toolbar-bgcolor) !important;
+            min-width: var(--sidebar-visible-width) !important;
+            max-width: var(--sidebar-visible-width) !important;
+            margin-right: calc((var(--sidebar-visible-width) - var(--sidebar-min-width)) * -1) !important;
+            z-index:1;
+            position: relative !important;
+            transition: .2s ease .0s;
+          }
+     '';
         settings = {
           "general.smoothScroll" = false;
         };
+
       };
+
     };
+
+      /* Hide tab bar in FF Quantum */
+      # @-moz-document url("chrome://browser/content/browser.xul") {
+      #   #TabsToolbar {
+      #     visibility: collapse !important;
+      #     margin-bottom: 21px !important;
+      #   }
+
+      #   #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header {
+      #     visibility: collapse !important;
+      #   }
+      # }
+
   };
 
 
@@ -105,12 +160,12 @@
       plugins = [ "git" "vi-mode" ];
       theme = "nicoulaj"; # add a new line for the theme
     };
+
+
     initExtraBeforeCompInit = ''
       ${builtins.readFile ~/nixOS/users/dani/src/functions.nix}
       bindkey -M vicmd "^V" edit-command-line
     '';
- 
-
  
   };
 
