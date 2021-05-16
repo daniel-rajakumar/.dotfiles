@@ -83,6 +83,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [ ];
   environment.variables.EDITOR = "nvim";
+  environment.variables.QT_QPA_PLATFORMTHEME = "qt5ct";
 
   #fonts
   fonts.fonts = with pkgs; [
