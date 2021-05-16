@@ -113,10 +113,13 @@ in
       { name = "zsh-syntax-highlighting"; src = zsh-syntax-highlighting; }
       { name = "powerlevel10k"; src = powerlevel10k; }
     ];
+
+    initExtra = ''source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme'';
+
     oh-my-zsh = {
       enable = true;
       plugins = [ "git" "vi-mode" ];
-      theme = "nicoulaj"; # add a new line for the theme
+      # theme = "nicoulaj"; # add a new line for the theme
     };
 
 
