@@ -52,7 +52,8 @@ fixed-center = true
 
 background = #00000000
 foreground = ${colors.foreground} 
-line-size = 3 line-color = ${colors.red0}
+line-size = 3 
+line-color = ${colors.red0}
 
 border-size = 0
 border-color = #00000000
@@ -76,10 +77,9 @@ font-5 = CaskaydiaCove Nerd Font Mono:style=Solid:size=22;5
 
 
 modules-left = jgmenu bspwm previous pause next round-right
-modules-center = round-left pulseaudio song round-right
+modules-center = round-left song round-right
 modules-right = round-left network bluetooth pulseaudio backlight battery date
 
-tray-position = tray-padding = 2 
 ;tray-background = ${xrdb:fgblue1} 
 wm-restack = bspwm
 
@@ -125,7 +125,7 @@ monitor = ${env:MONITOR:HDMI-1}
 inherit = bar/bottom
 monitor = ${env:MONITOR:HDMI-1}
 
-
+tray-position = none 
 
 
 
@@ -203,7 +203,7 @@ label-empty-foreground = ${colors.foreground}
 label-empty-background = ${colors.background}
 
 label-dimmed-foreground = ${colors.foreground}
-label-dimmed-underline = ${colors.black0}
+; label-dimmed-underline = ${colors.black0}
 label-dimmed-focused-foreground = ${colors.foreground}
 label-dimmed-focused-background = ${colors.background}
 
@@ -355,12 +355,12 @@ format-charging = <animation-charging> <label-charging>
 label-charging = %percentage%%
 format-charging-foreground = ${colors.foreground}
 format-charging-background = ${colors.background}
-format-charging-underline = ${colors.underline}
+; format-charging-underline = ${colors.underline}
 
 
 format-discharging = <ramp-capacity> <label-discharging>
 label-discharging =  %percentage%%
-format-discharging-underline = ${colors.underline}
+; format-discharging-underline = ${colors.underline}
 format-discharging-foreground = ${colors.foreground}
 format-discharging-background = ${colors.background}
 
