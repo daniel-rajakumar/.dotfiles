@@ -68,13 +68,18 @@
   hardware.pulseaudio.package = pkgs.pulseaudioFull;
   hardware.enableRedistributableFirmware = true;
 
+  # brightness
+  # hardware.brightnessctl.enable = true;
+
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
+
+users.groups.video = {}; 
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.dani = {
    isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "audio" "input" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "audio" "input" "video" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
     # editor = pkgs.vim;
   };
@@ -97,6 +102,7 @@
      ]; })
   ];
 
+  programs.light.enable = true;
 
   nixpkgs.config.pulseaudio = true;
   nixpkgs.config.allowUnfree = true; # allow unfree packages

@@ -89,12 +89,15 @@ in
     exa
     bat
     xorg.xev
+    xorg.xbacklight
+    # light
     # bluetoothctl
 
     # langs
     # ruby
 
   ];
+
 
   programs.firefox = {
     enable = true;

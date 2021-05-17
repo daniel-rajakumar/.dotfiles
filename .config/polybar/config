@@ -76,7 +76,7 @@ font-5 = CaskaydiaCove Nerd Font Mono:style=Solid:size=22;5
 
 
 modules-left = jgmenu bspwm previous pause next round-right
-modules-center = round-left song round-right
+modules-center = round-left pulseaudio song round-right
 modules-right = round-left network bluetooth pulseaudio backlight battery date
 
 tray-position = tray-padding = 2 
@@ -398,6 +398,7 @@ animation-charging-framerate = 500
 [module/backlight]
 ;https://github.com/jaagr/polybar/wiki/Module:-xbacklight
 type = internal/xbacklight
+output = eDP-1
 format = "<bar>    "
 format-prefix = "  "
 format-prefix-foreground = ${colors.foreground}
@@ -433,7 +434,7 @@ format-background = ${colors.background}
 type = internal/pulseaudio
 
 ;format-volume = <ramp-volume>  <bar-volume> <label-volume> 
-format-volume =  <ramp-volume><label-volume>
+format-volume =  <label-volume>
 
 format-volume-background = ${colors.background}
 
