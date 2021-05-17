@@ -90,6 +90,7 @@ in
     bat
     xorg.xev
     xorg.xbacklight
+    alsamixer
     # light
     # bluetoothctl
 

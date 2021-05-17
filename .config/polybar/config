@@ -398,7 +398,7 @@ animation-charging-framerate = 500
 [module/backlight]
 ;https://github.com/jaagr/polybar/wiki/Module:-xbacklight
 type = internal/xbacklight
-output = eDP-1
+output = sysfs/backlight/intel_backlight 
 format = "<bar>    "
 format-prefix = "  "
 format-prefix-foreground = ${colors.foreground}

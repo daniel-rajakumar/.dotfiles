@@ -64,9 +64,16 @@
   # Enable sound.
   sound.enable = true;
   hardware.bluetooth.enable = true;
+  hardware.enableRedistributableFirmware = true;
+
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.package = pkgs.pulseaudioFull;
-  hardware.enableRedistributableFirmware = true;
+  hardware.pulseaudio.support32Bit = true;
+
+  boot.extraModprobeConfig = ''
+    options snd slots=snd-hda-intel
+    options snd_hda_intel enable=0,1
+  '';
 
   # brightness
   # hardware.brightnessctl.enable = true;
@@ -74,7 +81,9 @@
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
 
-users.groups.video = {}; 
+  programs.light.enable = true;
+
+  # users.groups.video = {}; 
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.dani = {
@@ -102,7 +111,6 @@ users.groups.video = {};
      ]; })
   ];
 
-  programs.light.enable = true;
 
   nixpkgs.config.pulseaudio = true;
   nixpkgs.config.allowUnfree = true; # allow unfree packages
