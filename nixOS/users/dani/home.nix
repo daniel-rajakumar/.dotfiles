@@ -13,6 +13,9 @@ let
     rev = "b7d90c84671183797bdec17035fc2d36b5d12292";
     sha256 = "0nzvshv3g559mqrlf4906c9iw4jw8j83dxjax275b2wi8ix0wgmj";
   };
+
+
+  unstable = import <nixos-unstable> {};
 in
 
 {
@@ -32,7 +35,7 @@ in
 
     # editors
     vim
-    neovim
+    # neovim
     vscode
 
     # terminal
@@ -50,6 +53,7 @@ in
 
     # other
     discord
+    betterdiscord-installer
     megasync
     picom
     fusuma
@@ -135,5 +139,25 @@ in
     '';
   };
 
+  programs.neovim = {
+    enable = true;
+    vimAlias = true;
+
+   plugins = with pkgs.vimPlugins; [
+     one-nvim
+     gruvbox-nvim
+    ];
+
+    extraConfig = ''
+      set number relativenumber
+      syntax enable
+      set nowrap
+      set mouse=a
+      set tabstop=2
+      set expandtab 
+
+      colorscheme onedark
+    '';
+  };
  
 }
