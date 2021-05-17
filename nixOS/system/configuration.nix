@@ -64,26 +64,18 @@
   # Enable sound.
   sound.enable = true;
   hardware.bluetooth.enable = true;
-  hardware.enableRedistributableFirmware = true;
-
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.package = pkgs.pulseaudioFull;
-  hardware.pulseaudio.support32Bit = true;
+  hardware.enableRedistributableFirmware = true;
 
   boot.extraModprobeConfig = ''
-    options snd slots=snd-hda-intel
-    options snd_hda_intel enable=0,1
-  '';
-
-  # brightness
-  # hardware.brightnessctl.enable = true;
+     options snd slots=snd-hda-intel
+     options snd_hda_intel enable=0,1
+   '';
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
-
   programs.light.enable = true;
-
-  # users.groups.video = {}; 
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.dani = {
@@ -98,6 +90,7 @@
   environment.systemPackages = with pkgs; [ ];
   environment.variables.EDITOR = "nvim";
   environment.variables.QT_QPA_PLATFORMTHEME = "qt5ct";
+
 
   #fonts
   fonts.fonts = with pkgs; [
@@ -144,4 +137,3 @@
   system.stateVersion = "20.09"; # Did you read the comment?
 
 }
-

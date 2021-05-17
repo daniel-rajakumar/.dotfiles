@@ -46,7 +46,8 @@ in
     # WM
     sxhkd
     nitrogen
-    polybar
+   #  polybar
+    (polybar.override { pulseSupport = true; })
     rofi
     dunst
     notify-desktop
@@ -90,7 +91,7 @@ in
     bat
     xorg.xev
     xorg.xbacklight
-    alsamixer
+    # alsamixer
     # light
     # bluetoothctl
 
@@ -160,7 +161,6 @@ in
       set tabstop=2
       set expandtab 
 
-      colorscheme onedark
     '';
   };
  
