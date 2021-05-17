@@ -94,6 +94,7 @@ in
     # alsamixer
     # light
     # bluetoothctl
+    tuptime
 
     # langs
     # ruby

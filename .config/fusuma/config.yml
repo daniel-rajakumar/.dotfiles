@@ -6,9 +6,11 @@ swipe:
         command: "pamixer --allow-boost -d 2" # volume dec
   4:
     up:
-      command: "xrandr --output eDP-1 --brightness $(perl -e \"printf $(xrandr --verbose | grep -m1 Brightness | grep -o '[0-9].*') + 0.1\") " # brightness inc 
+      command: "light -A 4" # brightness inc 
+      # command: "xrandr --output eDP-1 --brightness $(perl -e \"printf $(xrandr --verbose | grep -m1 Brightness | grep -o '[0-9].*') + 0.1\") " # brightness inc 
     down:
-      command: "xrandr --output eDP-1 --brightness $(perl -e \"printf $(xrandr --verbose | grep -m1 Brightness | grep -o '[0-9].*') - 0.1\") " # brightness inc 
+      command: "light -U 4" # brightness inc 
+      # command: "xrandr --output eDP-1 --brightness $(perl -e \"printf $(xrandr --verbose | grep -m1 Brightness | grep -o '[0-9].*') - 0.1\") " # brightness inc 
 
 
 

@@ -72,7 +72,7 @@ font-0 = Comic Sans MS:style=Solid:size=11.5;1
 font-1 = FontAwesome5Free:style=Solid:size=11;1
 font-2 = FontAwesome5Brands:style=Regular:size=15;4
 font-3 = CaskaydiaCove Nerd Font Mono:style=Solid:size=20;5
-font-4 = CaskaydiaCove Nerd Font Mono:style=Solid:size=20;7
+font-4 = CaskaydiaCove Nerd Font Mono:style=Solid:size=20;5
 font-5 = CaskaydiaCove Nerd Font Mono:style=Solid:size=22;5 
 
 
@@ -103,7 +103,7 @@ cursor-scroll = ns-resize
 inherit = bar/top
 bottom = true
 
-modules-left = power package-updates filesystem memory temperature cpu round-right
+modules-left = power uptime filesystem memory temperature cpu round-right
 modules-center = round-left xwindow round-right
 modules-right = round-left network_speed weather
 
@@ -143,7 +143,7 @@ fuzzy-match = false
 ; ws-icon-[0-9]+ = label;icon
 ; Note that the label needs to correspond with the bspwm workspace name
 
-ws-icon-1 = 1;%{F#E66000}
+ws-icon-1 = 1;%{F#E66000}
 ws-icon-2 = 2; 2
 ws-icon-3 = 3; 3
 ws-icon-4 = 4; 4
@@ -315,7 +315,7 @@ label = %output%
 [module/jgmenu]
 type = custom/script
 interval = 120
-exec = echo "%{F#fff}      |  "
+exec = echo "%{F#fff}      | "
 
 click-left = "jgmenu_run >/dev/null 2>&1 &"
 format-foreground = ${colors.foreground}
@@ -572,24 +572,21 @@ format-padding = 2
 type = internal/temperature
 thermal-zone = 0
 
-hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input
-
-warn-temperature = 70
-format = <ramp> <label>
-
-format-foreground = ${colors.foreground}
-format-background = ${colors.background}
-format-underline = ${colors.underline}
-
-format-warn = <ramp> <label-warn>
-format-warn-underline = ${colors.underline} 
+hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon2/temp1_input
 
 label = %temperature%
+warn-temperature = 80
+
+format = <ramp> <label>
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
 label-padding-right = 2
 
-label-warn = %temperature%
-label-warn-foreground = ${colors.foreground}
-label-warn-padding-right = 2
+
+format-warn = <ramp> <label-warn>
+format-warn-background = ${colors.background}
+label-warn-foreground = ${colors.red0}
+
 
 ramp-0 = %{F#56B6C2}
 ramp-1 = %{F#56B6C2}
@@ -663,6 +660,21 @@ format-background = ${colors.background}
 
 format-prefix = "%{F#E5C07B}  "
 format-prefix-foreground = ${colors.foreground} 
+
+
+[module/uptime]
+type = custom/script
+exec = tuptime | grep "Current uptime: " | cut -c 18- | rev |cut -c 32- | rev
+interval = 5
+label = %output%
+
+format-padding = 2
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+
+format-prefix = "%{F#E5C07B} "
+format-prefix-foreground = ${colors.foreground} 
+
 
 
 

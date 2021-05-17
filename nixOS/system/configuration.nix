@@ -68,10 +68,10 @@
   hardware.pulseaudio.package = pkgs.pulseaudioFull;
   hardware.enableRedistributableFirmware = true;
 
-  boot.extraModprobeConfig = ''
-     options snd slots=snd-hda-intel
-     options snd_hda_intel enable=0,1
-   '';
+#  boot.extraModprobeConfig = ''
+#     options snd slots=snd-hda-intel
+#     options snd_hda_intel enable=0,1
+#   '';
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
