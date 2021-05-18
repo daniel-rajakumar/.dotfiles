@@ -51,6 +51,7 @@ in
     rofi
     dunst
     notify-desktop
+    jgmenu
 
     # other
     discord
@@ -72,6 +73,7 @@ in
     # theming 
     lxappearance
     qt5ct
+    papirus-icon-theme
 
     # tools
     wget

@@ -31,7 +31,7 @@
   spacing: 0;
   background-color: transparent;
 
-  font: "Hack Nerd Font 14";
+  font: "comic sans ms 14";
   text-color: @text;
 }
 

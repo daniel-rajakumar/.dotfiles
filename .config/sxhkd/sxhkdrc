@@ -179,11 +179,11 @@ XF86AudioLowerVolume
 
 # increase brightness
 alt + XF86AudioRaiseVolume
-    xbacklight + 1
+    light -A 1
 
 # decrease brightness
 alt + XF86AudioLowerVolume
-    xbacklight - 1
+    light -U 1
 
 
 XF86Calculator

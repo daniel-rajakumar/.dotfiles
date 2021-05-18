@@ -5,6 +5,8 @@ sxhkd &
 killall polybar && killall polybar
 killall libinput-debug-events
 
+sudo tuptime
+
 polybar top &
 polybar bottom &
 polybar top1 &
