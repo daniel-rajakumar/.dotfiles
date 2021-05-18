@@ -68,13 +68,19 @@
   hardware.pulseaudio.package = pkgs.pulseaudioFull;
   hardware.enableRedistributableFirmware = true;
 
+#  boot.extraModprobeConfig = ''
+#     options snd slots=snd-hda-intel
+#     options snd_hda_intel enable=0,1
+#   '';
+
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
+  programs.light.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.dani = {
    isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "audio" "input" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "audio" "input" "video" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
     # editor = pkgs.vim;
   };
@@ -83,6 +89,8 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [ ];
   environment.variables.EDITOR = "nvim";
+  # environment.variables.QT_QPA_PLATFORMTHEME = "qt5ct";
+
 
   #fonts
   fonts.fonts = with pkgs; [
@@ -129,4 +137,3 @@
   system.stateVersion = "20.09"; # Did you read the comment?
 
 }
-
