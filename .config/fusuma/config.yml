@@ -9,8 +9,8 @@ swipe:
       command: "light -A 4" # brightness inc 
       # command: "xrandr --output eDP-1 --brightness $(perl -e \"printf $(xrandr --verbose | grep -m1 Brightness | grep -o '[0-9].*') + 0.1\") " # brightness inc 
     down:
-      command: "light -U 4" # brightness inc 
-      # command: "xrandr --output eDP-1 --brightness $(perl -e \"printf $(xrandr --verbose | grep -m1 Brightness | grep -o '[0-9].*') - 0.1\") " # brightness inc 
+      command: "light -U 4" # brightness dec 
+      # command: "xrandr --output eDP-1 --brightness $(perl -e \"printf $(xrandr --verbose | grep -m1 Brightness | grep -o '[0-9].*') - 0.1\") " # brightness dec 
 
 
 
