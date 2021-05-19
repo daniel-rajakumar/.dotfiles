@@ -27,11 +27,14 @@ in
 
   nixpkgs.config.allowUnfree = true;
 
+
+
+  # activate plasma browser
   nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;
 
   home.packages = with pkgs; [
-    #browser
-    firefox
+    # browser
+    # firefox # -> plasma browser WORKS
     brave
 
     # editors
@@ -103,10 +106,13 @@ in
     # ruby
     xdg-desktop-portal-kde
 
+
+
+
   ];
 
-
-  programs.firefox = {
+ # plasma browser FAILS TO WORK
+ programs.firefox = {
     enable = true;
 
     profiles = {
@@ -119,6 +125,7 @@ in
       };
     };
   };
+
 
 
 

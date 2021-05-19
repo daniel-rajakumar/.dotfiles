@@ -92,7 +92,6 @@
   ];
 
 
-  nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;
 
   environment.variables.EDITOR = "nvim";
   # environment.variables.QT_QPA_PLATFORMTHEME = "qt5ct";
