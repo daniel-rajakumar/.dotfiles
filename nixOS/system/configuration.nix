@@ -79,7 +79,7 @@
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.dani = {
-   isNormalUser = true;
+    isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "audio" "input" "video" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
     # editor = pkgs.vim;
@@ -87,7 +87,9 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [ ];
+  environment.systemPackages = with pkgs; [ 
+   # firefox vim yadm git
+  ];
   environment.variables.EDITOR = "nvim";
   # environment.variables.QT_QPA_PLATFORMTHEME = "qt5ct";
 

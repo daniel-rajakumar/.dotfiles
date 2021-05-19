@@ -15,7 +15,7 @@ let
   };
 
 
-  unstable = import <nixos-unstable> {};
+  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
 in
 
 {
@@ -54,8 +54,8 @@ in
     jgmenu
 
     # other
-    discord
-    betterdiscord-installer
+    unstable.discord
+    unstable.betterdiscord-installer
     megasync
     picom
     fusuma
@@ -152,8 +152,8 @@ in
     vimAlias = true;
 
    plugins = with pkgs.vimPlugins; [
-     one-nvim
-     gruvbox-nvim
+     # one-nvim
+     # gruvbox-nvim
     ];
 
     extraConfig = ''
@@ -163,7 +163,6 @@ in
       set mouse=a
       set tabstop=2
       set expandtab 
-
     '';
   };
  
