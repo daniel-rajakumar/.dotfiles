@@ -28,9 +28,10 @@ in
   nixpkgs.config.allowUnfree = true;
 
   nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;
+
   home.packages = with pkgs; [
     #browser
-    # firefox
+    firefox
     brave
 
     # editors
@@ -47,7 +48,7 @@ in
     sxhkd
     nitrogen
    #  polybar
-    (polybar.override { pulseSupport = true; })
+    (unstable.polybar.override { pulseSupport = true; })
     rofi
     dunst
     notify-desktop
@@ -88,7 +89,7 @@ in
     playerctl
     wirelesstools
     bluez
-    plasma-browser-integration
+    unstable.plasma-browser-integration
     exa
     bat
     xorg.xev
@@ -100,6 +101,7 @@ in
 
     # langs
     # ruby
+    xdg-desktop-portal-kde
 
   ];
 
@@ -117,6 +119,7 @@ in
       };
     };
   };
+
 
 
   # Some programs need SUID wrappers, can be configured further or are

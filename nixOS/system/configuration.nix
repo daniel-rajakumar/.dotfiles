@@ -65,8 +65,8 @@
   sound.enable = true;
   hardware.bluetooth.enable = true;
   hardware.pulseaudio.enable = true;
-  hardware.pulseaudio.package = pkgs.pulseaudioFull;
-  hardware.enableRedistributableFirmware = true;
+  # hardware.pulseaudio.package = pkgs.pulseaudioFull;
+  # hardware.enableRedistributableFirmware = true;
 
 #  boot.extraModprobeConfig = ''
 #     options snd slots=snd-hda-intel
@@ -90,6 +90,10 @@
   environment.systemPackages = with pkgs; [ 
    # firefox vim yadm git
   ];
+
+
+  nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;
+
   environment.variables.EDITOR = "nvim";
   # environment.variables.QT_QPA_PLATFORMTHEME = "qt5ct";
 
