@@ -1,0 +1,138 @@
+/* Notification center */
+
+.blurredBG, #main_window, .blurredBG.low, .blurredBG.normal {
+    background: rgba(30, 30, 30, 0.95);
+}
+
+.noti-center.time {
+    font-size: 32px;
+}
+
+/* Notifications */
+
+.title {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.appname {
+    font-size: 12px;
+}
+
+.time {
+    font-size: 12px;
+}
+
+.blurredBG.notification {
+    background:  rgba(50, 50, 50, 0.95);
+}
+
+.blurredBG.notification.critical {
+    background: rgba(255, 0, 0, 0.75);
+}
+
+.notificationInCenter.critical {
+    background: rgba(255, 0, 20, 0.5);
+}
+
+.notificationInCenter {
+    background: rgba(50, 50, 50, 0.95);
+}
+
+
+/* Labels */
+
+label {
+    color: #ddd;
+}
+
+label.notification {
+    color: #ddd;
+}
+
+label.critical {
+    color: #ddd;
+}
+.notificationInCenter label.critical {
+    color: #ddd;
+}
+
+
+/* Buttons */
+
+button {
+    background: transparent;
+    color: #ff0;
+    border-radius: 10px;
+    border-width: 0px;
+    background-position: 0px 0px;
+    text-shadow: none;
+}
+
+button:hover {
+    border-radius: 10px;
+    background: rgba(255, 0, 0, 1);
+    border-width: 0px;
+    border-top: transparent;
+    border-color: #f00;
+    color: #fee;
+}
+
+
+/* Custom Buttons */
+
+.userbutton {
+    background: rgba(20,0,0, 0.15);
+}
+
+.userbuttonlabel {
+    color: #222;
+    font-size: 12px;
+}
+
+.userbutton:hover {
+    background: rgba(20, 0, 0, 0.2);
+}
+
+.userbuttonlabel:hover {
+    color: #111;
+}
+
+button.buttonState1 {
+    background: rgba(20,0,0,0.5);
+}
+
+.userbuttonlabel.buttonState1 {
+    color: #fff;
+}
+
+button.buttonState1:hover {
+    background: rgba(20,0,0, 0.4);
+}
+
+.userbuttonlabel.buttonState1:hover {
+    color: #111;
+}
+
+button.buttonState2 {
+    background: rgba(255,255,255,0.3);
+}
+
+.userbuttonlabel.buttonState2 {
+    color: #111;
+}
+
+button.buttonState2:hover {
+    background: rgba(20,0,0, 0.3);
+}
+
+.userbuttonlabel.buttonState2:hover {
+    color: #000;
+}
+
+
+/* Images */
+
+image.deadd-noti-center.notification.image {
+    margin-left: 20px;
+}

@@ -56,6 +56,7 @@ in
     dunst
     notify-desktop
     jgmenu
+    unstable.deadd-notification-center
 
     # other
     unstable.discord
