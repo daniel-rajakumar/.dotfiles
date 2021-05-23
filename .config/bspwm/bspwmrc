@@ -1,5 +1,4 @@
 #! /bin/sh
-
 #autostart 
 sxhkd &
 killall polybar && killall polybar
@@ -12,6 +11,7 @@ polybar bottom &
 polybar top1 &
 polybar bottom1 &
 # dunst &
+deadd-notification-center &
 picom --experimental-backends &
 fusuma &
 redshift -l $LOCATION_LAT:$LOCATION_LON &
@@ -69,8 +69,11 @@ bspc config urgent_border_color           "#555555"
 
 #window rules (https://www.reddit.com/r/bspwm/comments/ka34xr/bspc_rule_based_on_net_wm_name/gfe8rb4/)
 # bspc rule -a <NAME> desktop='^7' state=floating center=true rectangle=1376x625+0+0
-bspc rule -a discord desktop='9' 
+bspc rule -a discord desktop=9 
+bspc rule -a Code desktop=8 
 bspc rule -a "*:*:YouTube Music" desktop=0
+bspc rule -a "*:*:Outlook" desktop=10
+bspc rule -a "*:*:Office" desktop=19
 bspc rule -a "Qalculate-gtk" state=floating rectangle=266x84+2919+42
 
 

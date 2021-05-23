@@ -32,10 +32,14 @@ in
   # activate plasma browser
   nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;
 
+
+  # programs.vscode.package = pkgs.vscode-fhsWithPackages (ps: with ps; [ jdk11 ]);
+
   home.packages = with pkgs; [
     # browser
     # firefox # -> plasma browser WORKS
     brave
+    google-chrome
 
     # editors
     vim
@@ -76,13 +80,17 @@ in
     vlc
 
     # theming 
-    lxappearance
+    unstable.lxappearance
     qt5ct
     papirus-icon-theme
+    # breeze-gtk
+    # marwaita-manjaro
+    # theme-obsidian2
+    gnome-breeze
 
     # tools
     wget
-    neofetch
+    unstable.neofetch
     flameshot
     git
     htop
@@ -102,15 +110,24 @@ in
     # light
     # bluetoothctl
     tuptime
+    colorpicker
+
 
     # langs
     # ruby
+    # openjdk11
+    unstable.jetbrains.idea-community
+
+
+
+
+
+
+    # ?
     xdg-desktop-portal-kde
 
-
-
-
   ];
+
 
  # plasma browser FAILS TO WORK
  programs.firefox = {
@@ -126,6 +143,8 @@ in
       };
     };
   };
+
+
 
 
 

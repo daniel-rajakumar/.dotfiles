@@ -11,3 +11,6 @@
 # ridden in every subshell.
 
 test -s ~/.alias && . ~/.alias || true
+
+
+export VAR=abc

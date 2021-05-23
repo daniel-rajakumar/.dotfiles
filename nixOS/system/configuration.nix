@@ -93,8 +93,16 @@
 
 
 
+
   environment.variables.EDITOR = "nvim";
+  environment.variables.JAVA_HOME = "/nix/store/pb1slcapcgn6mrdwpb7bz8qa42w9q8im-openjdk-11.0.9+11/lib/openjdk";
   # environment.variables.QT_QPA_PLATFORMTHEME = "qt5ct";
+
+   programs.java = {
+     enable = true;
+     package = pkgs.jdk11;
+
+  };
 
 
   #fonts

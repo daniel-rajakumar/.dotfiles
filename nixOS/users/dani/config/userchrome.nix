@@ -7,7 +7,7 @@
 /* makes the sidebar hoverable */
 :root {
     --sidebar-min-width: 30px;
-    --sidebar-visible-width: 300px;
+    --sidebar-visible-width: 250px;
 }
 
 #sidebar-header {
@@ -23,7 +23,7 @@
     position: relative !important;
     min-width: var(--sidebar-min-width) !important;
     max-width: var(--sidebar-min-width) !important;
-    transition: .2s ease .25s;
+    transition: .05s ease .25s;
     z-index:1;
 }
 
@@ -34,5 +34,5 @@
     margin-right: calc((var(--sidebar-visible-width) - var(--sidebar-min-width)) * -1) !important;
     z-index:1;
     position: relative !important;
-    transition: .2s ease .0s;
+    transition: .05s ease .0s;
 }
