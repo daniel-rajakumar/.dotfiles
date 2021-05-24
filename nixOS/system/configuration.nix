@@ -77,10 +77,13 @@
   services.xserver.libinput.enable = true;
   programs.light.enable = true;
 
+  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.guest.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.dani = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "audio" "input" "video" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "audio" "input" "video" "user-with-access-to-virtualbox" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
     # editor = pkgs.vim;
   };

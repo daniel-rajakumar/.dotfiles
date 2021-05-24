@@ -76,6 +76,9 @@ in
     qalculate-gtk
     obs-studio
 
+    #deps
+    linuxHeaders
+
     # media
     vlc
 
