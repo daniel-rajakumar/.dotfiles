@@ -75,6 +75,8 @@ in
     pamixer
     qalculate-gtk
     obs-studio
+    # linuxPackages.virtualboxGuestAdditions
+    # virtualboxExtpack
 
     #deps
     linuxHeaders

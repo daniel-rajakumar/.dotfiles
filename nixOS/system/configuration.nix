@@ -77,8 +77,12 @@
   services.xserver.libinput.enable = true;
   programs.light.enable = true;
 
-  virtualisation.virtualbox.host.enable = true;
-  virtualisation.virtualbox.guest.enable = true;
+  # virtualisation.virtualbox = {
+   #  host.enable = true;
+     # host.enableExtensionPack = true;
+     # guest.enable = true;
+  # };
+
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.dani = {
