@@ -77,6 +77,7 @@ in
     obs-studio
     # linuxPackages.virtualboxGuestAdditions
     # virtualboxExtpack
+    # virtualbox
 
     #deps
     linuxHeaders
@@ -148,6 +149,8 @@ in
       };
     };
   };
+
+
 
 
 

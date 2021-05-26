@@ -72,6 +72,10 @@ bspc config urgent_border_color           "#555555"
 bspc rule -a discord desktop=9 
 bspc rule -a Code desktop=8 
 bspc rule -a firefox desktop=1 
+
+# bspc rule -a "VirtualBox Manager" state=floating
+# bspc rule -a "VirtualBoxVM" state=floating
+
 bspc rule -a "*:*:YouTube Music" desktop=0
 bspc rule -a "*:*:Outlook" desktop=10
 bspc rule -a "*:*:Office" desktop=19
