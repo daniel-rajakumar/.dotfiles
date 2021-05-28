@@ -29,9 +29,6 @@ in
 
 
 
-  # activate plasma browser
-  nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;
-
 
   # programs.vscode.package = pkgs.vscode-fhsWithPackages (ps: with ps; [ jdk11 ]);
 
@@ -63,7 +60,7 @@ in
     unstable.deadd-notification-center
 
     # other
-    unstable.discord
+    discord
     unstable.betterdiscord-installer
     megasync
     picom
@@ -135,7 +132,18 @@ in
   ];
 
 
- # plasma browser FAILS TO WORK
+# nixpkgs.config.firefox = {
+#  enablePlasmaBrowserIntegration = true;
+#   enable = true;
+# 
+#   profiles.myprofile.userChrome = ''${builtins.readFile  ~/nixOS/users/dani/config/userchrome.nix}'';
+# 
+# 
+# 
+#    '';
+# };
+
+# plasma browser FAILS TO WORK
  programs.firefox = {
     enable = true;
 
@@ -149,7 +157,6 @@ in
       };
     };
   };
-
 
 
 
