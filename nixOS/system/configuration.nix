@@ -92,10 +92,23 @@
     # editor = pkgs.vim;
   };
 
+
+
+      programs.chromium = {
+    enable = true;
+    extensions = [
+      "cimiefiiaegbelhefglklhhakcgmhkai" # Plasma integration
+    ];
+  };
+
+  environment.etc."chromium/native-messaging-hosts/org.kde.plasma.browser_integration.json".source = "${pkgs.plasma-browser-integration}/etc/chromium/native-messaging-hosts/org.kde.plasma.browser_integration.json";
+
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [ 
    # firefox vim yadm git
+   chromium
   ];
 
 

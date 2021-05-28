@@ -33,13 +33,15 @@ in
   # programs.vscode.package = pkgs.vscode-fhsWithPackages (ps: with ps; [ jdk11 ]);
 
   nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;
+
+
   nixpkgs.config.brave.enablePlasmaBrowserIntegration = true;
 
 
   home.packages = with pkgs; [
     # browser
      firefox # -> plasma browser WORKS
-    # brave
+    unstable.brave
     google-chrome
 
     # editors
@@ -109,7 +111,19 @@ in
     playerctl
     wirelesstools
     bluez
-    unstable.plasma-browser-integration
+
+
+
+    plasma-browser-integration
+    plasma5.plasma-browser-integration
+    # libsForQt514.plasma-browser-integration
+    # libsForQt5.plasma-browser-integration
+    # libsForQt512.plasma-browser-integration
+
+
+
+    mediainfo
+    mediainfo-gui
     exa
     bat
     xorg.xev
@@ -119,6 +133,7 @@ in
     # bluetoothctl
     tuptime
     colorpicker
+    youtube-dl
 
 
     # langs
@@ -132,7 +147,7 @@ in
 
 
     # ?
-    xdg-desktop-portal-kde
+    # xdg-desktop-portal-kde
 
   ];
 
@@ -142,6 +157,7 @@ in
       url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
     }))
   ];
+
 
 
 
