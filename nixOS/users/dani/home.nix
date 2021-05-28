@@ -35,7 +35,7 @@ in
   nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;
 
 
-  nixpkgs.config.brave.enablePlasmaBrowserIntegration = true;
+  # nixpkgs.config.brave.enablePlasmaBrowserIntegration = true;
 
 
   home.packages = with pkgs; [
