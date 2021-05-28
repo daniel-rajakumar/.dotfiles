@@ -136,28 +136,12 @@ in
 
   ];
 
+ # nvim 0.5
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
       url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
     }))
   ];
-
-  # programs.neovim.package = pkgs.neovim-nightly;
-
-
-# nixpkgs.config.firefox = {
-#  enablePlasmaBrowserIntegration = true;
-#   enable = true;
-# 
-#   profiles.myprofile.userChrome = ''${builtins.readFile  ~/nixOS/users/dani/config/userchrome.nix}'';
-# 
-# 
-# 
-#    '';
-# };
-
-# plasma browser FAILS TO WORK
-
 
 
 
