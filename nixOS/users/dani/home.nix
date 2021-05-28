@@ -32,15 +32,20 @@ in
 
   # programs.vscode.package = pkgs.vscode-fhsWithPackages (ps: with ps; [ jdk11 ]);
 
+  nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;
+  nixpkgs.config.brave.enablePlasmaBrowserIntegration = true;
+
+
   home.packages = with pkgs; [
     # browser
-    # firefox # -> plasma browser WORKS
-    brave
+     firefox # -> plasma browser WORKS
+    # brave
     google-chrome
 
     # editors
     vim
     # neovim
+    neovim-nightly
     vscode
 
     # terminal
@@ -131,6 +136,14 @@ in
 
   ];
 
+  nixpkgs.overlays = [
+    (import (builtins.fetchTarball {
+      url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
+    }))
+  ];
+
+  # programs.neovim.package = pkgs.neovim-nightly;
+
 
 # nixpkgs.config.firefox = {
 #  enablePlasmaBrowserIntegration = true;
@@ -144,19 +157,6 @@ in
 # };
 
 # plasma browser FAILS TO WORK
- programs.firefox = {
-    enable = true;
-
-    profiles = {
-      myprofile = {
-        userChrome = ''${builtins.readFile  ~/nixOS/users/dani/config/userchrome.nix}'';
-
-        settings = {
-          "general.smoothScroll" = true;
-        };
-      };
-    };
-  };
 
 
 
