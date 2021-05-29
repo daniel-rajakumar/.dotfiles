@@ -32,7 +32,10 @@ xrandr --output eDP-1 --primary --mode 1920x1080 --pos 1280x0 --rotate normal --
 # xautolock -detectsleep -time 10 -locker "i3lock-color" -notify 30 -notifier "notify-desktop -u critical -t 10000 -- 'LOCKING screen in 30 seconds'" -lockaftersleep &
 
 # suspend after 305 second 
-xidlehook --not-when-fullscreen --timer 5 "systemctl suspend &; $HOME/scripts/lockScreen.sh" "" &
+
+# xidlehook --not-when-fullscreen --timer 150 "$HOME/scripts/lockScreen.sh" "" &
+xidlehook --not-when-fullscreen --timer 300 "$HOME/scripts/lockScreen.sh; systemctl suspend" "" &
+# xidlehook --not-when-fullscreen --timer 500 "$HOME/scripts/lockScreen.sh; systemctl hybrade" "" &
 
 
 
@@ -93,4 +96,6 @@ bspc rule -a "Qalculate-gtk" state=floating rectangle=266x84+2919+42
 
 # temp
 bspc rule -a "App" state=floating
+
+
 

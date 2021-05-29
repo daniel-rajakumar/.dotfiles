@@ -126,6 +126,7 @@ in
     tuptime
     colorpicker
     youtube-dl
+    acpi
 
 
     # langs

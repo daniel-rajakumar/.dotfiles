@@ -93,8 +93,6 @@
   };
 
 
-  # make plasma browser integration work inside chormium brower
-  environment.etc."chromium/native-messaging-hosts/org.kde.plasma.browser_integration.json".source = "${pkgs.plasma-browser-integration}/etc/chromium/native-messaging-hosts/org.kde.plasma.browser_integration.json";
 
 
   # List packages installed in system profile. To search, run:
@@ -108,7 +106,11 @@
 
   environment.variables.EDITOR = "nvim";
   environment.variables.JAVA_HOME = "/nix/store/pb1slcapcgn6mrdwpb7bz8qa42w9q8im-openjdk-11.0.9+11/lib/openjdk";
-  # environment.variables.QT_QPA_PLATFORMTHEME = "qt5ct";
+  environment.variables.QT_QPA_PLATFORMTHEME = "qt5ct";
+  # make plasma browser integration work inside chormium brower
+  environment.etc."chromium/native-messaging-hosts/org.kde.plasma.browser_integration.json".source = "${pkgs.plasma-browser-integration}/etc/chromium/native-messaging-hosts/org.kde.plasma.browser_integration.json";
+
+
 
    programs.java = {
      enable = true;
