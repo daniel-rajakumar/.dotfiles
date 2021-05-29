@@ -84,16 +84,16 @@ button:hover {
 /* Custom Buttons */
 
 .userbutton {
-    background: rgba(20,0,0, 0.15);
+    background: rgba(52, 190, 91, 1);
 }
 
 .userbuttonlabel {
-    color: #222;
+    color: #000;
     font-size: 12px;
 }
 
 .userbutton:hover {
-    background: rgba(20, 0, 0, 0.2);
+    background: rgba(52, 190, 91, 0.8);
 }
 
 .userbuttonlabel:hover {
@@ -101,7 +101,7 @@ button:hover {
 }
 
 button.buttonState1 {
-    background: rgba(20,0,0,0.5);
+    background: rgba(255,255,0,0.9);
 }
 
 .userbuttonlabel.buttonState1 {
@@ -109,7 +109,7 @@ button.buttonState1 {
 }
 
 button.buttonState1:hover {
-    background: rgba(20,0,0, 0.4);
+    background: rgba(52, 190, 91, 0.8);
 }
 
 .userbuttonlabel.buttonState1:hover {
@@ -117,7 +117,7 @@ button.buttonState1:hover {
 }
 
 button.buttonState2 {
-    background: rgba(255,255,255,0.3);
+    background: rgba(52, 190, 91, 1);
 }
 
 .userbuttonlabel.buttonState2 {
@@ -125,11 +125,11 @@ button.buttonState2 {
 }
 
 button.buttonState2:hover {
-    background: rgba(20,0,0, 0.3);
+    background: rgba(52, 190, 91, 0.8);
 }
 
 .userbuttonlabel.buttonState2:hover {
-    color: #000;
+    background: rgba(0,0,255,0.9);
 }
 
 
