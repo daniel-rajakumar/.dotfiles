@@ -40,7 +40,7 @@ in
 
   home.packages = with pkgs; [
     # browser
-     firefox # -> plasma browser WORKS
+    firefox
     unstable.brave
     google-chrome
 
@@ -82,6 +82,10 @@ in
     # linuxPackages.virtualboxGuestAdditions
     # virtualboxExtpack
     # virtualbox
+    i3lock-color
+    xidlehook
+    xautolock
+    betterlockscreen
 
     #deps
     linuxHeaders
@@ -111,19 +115,7 @@ in
     playerctl
     wirelesstools
     bluez
-
-
-
     plasma-browser-integration
-    plasma5.plasma-browser-integration
-    # libsForQt514.plasma-browser-integration
-    # libsForQt5.plasma-browser-integration
-    # libsForQt512.plasma-browser-integration
-
-
-
-    mediainfo
-    mediainfo-gui
     exa
     bat
     xorg.xev

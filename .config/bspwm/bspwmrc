@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 #autostart 
 sxhkd &
 killall polybar && killall polybar
@@ -26,6 +26,14 @@ setxkbmap -option caps:swapescape &
 
 # multi monitor
 xrandr --output eDP-1 --primary --mode 1920x1080 --pos 1280x0 --rotate normal --output DP1 --off --output DP2 --off --output HDMI-1 --mode 1280x1024 --pos 0x0 --rotate normal --output VIRTUAL1 --off &
+
+
+# lock screen after 5 mins
+# xautolock -detectsleep -time 10 -locker "i3lock-color" -notify 30 -notifier "notify-desktop -u critical -t 10000 -- 'LOCKING screen in 30 seconds'" -lockaftersleep &
+
+# suspend after 305 second 
+xidlehook --not-when-fullscreen --timer 5 "systemctl suspend &; $HOME/scripts/lockScreen.sh" "" &
+
 
 
 

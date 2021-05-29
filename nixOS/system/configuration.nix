@@ -93,14 +93,6 @@
   };
 
 
-
-#  programs.chromium = {
-#    enable = true;
-#    extensions = [
-#      "cimiefiiaegbelhefglklhhakcgmhkai" # Plasma integration
-#    ];
-#  };
-
   # make plasma browser integration work inside chormium brower
   environment.etc."chromium/native-messaging-hosts/org.kde.plasma.browser_integration.json".source = "${pkgs.plasma-browser-integration}/etc/chromium/native-messaging-hosts/org.kde.plasma.browser_integration.json";
 
@@ -109,7 +101,6 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [ 
    # firefox vim yadm git
-   # chromium
   ];
 
 
