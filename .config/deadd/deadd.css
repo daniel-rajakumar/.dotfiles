@@ -1,7 +1,7 @@
 /* Notification center */
 
 .blurredBG, #main_window, .blurredBG.low, .blurredBG.normal {
-    background: rgba(30, 30, 30, 0.95);
+    background: rgba(40, 40, 40, 0.95);
 }
 
 
@@ -26,7 +26,7 @@
 }
 
 .blurredBG.notification {
-    background:  rgba(50, 50, 50, 0.95);
+    background:  rgba(60, 60, 60, 0.95);
 }
 
 .blurredBG.notification.critical {
@@ -38,7 +38,7 @@
 }
 
 .notificationInCenter {
-    background: rgba(50, 50, 50, 0.95);
+    background: rgba(60, 60, 60, 0.95);
 }
 
 
@@ -105,7 +105,7 @@ button.buttonState1 {
 }
 
 .userbuttonlabel.buttonState1 {
-    color: #fff;
+    color: #000;
 }
 
 button.buttonState1:hover {
@@ -121,7 +121,7 @@ button.buttonState2 {
 }
 
 .userbuttonlabel.buttonState2 {
-    color: #111;
+    color: #000;
 }
 
 button.buttonState2:hover {
@@ -129,7 +129,7 @@ button.buttonState2:hover {
 }
 
 .userbuttonlabel.buttonState2:hover {
-    background: rgba(0,0,255,0.9);
+    color: #111;
 }
 
 

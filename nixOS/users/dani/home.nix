@@ -38,9 +38,11 @@ in
   # nixpkgs.config.brave.enablePlasmaBrowserIntegration = true;
 
 
+
+
   home.packages = with pkgs; [
     # browser
-    firefox
+    # firefox
     unstable.brave
     google-chrome
 
@@ -143,6 +145,28 @@ in
     # xdg-desktop-portal-kde
 
   ];
+
+
+ # firefox
+ # make plasma browser intefration work
+ home.file.".mozilla/native-messaging-hosts/org.kde.plasma.browser_integration.json".source = "${pkgs.plasma-browser-integration}/lib/mozilla/native-messaging-hosts/org.kde.plasma.browser_integration.json";
+
+ programs.firefox = {
+    enable = true;
+
+    profiles = {
+      myprofile = {
+        userChrome = ''${builtins.readFile  ~/nixOS/users/dani/config/userchrome.nix}'';
+
+        settings = {
+          "general.smoothScroll" = true;
+        };
+      };
+    };
+  };
+
+
+
 
  # nvim 0.5
   nixpkgs.overlays = [
