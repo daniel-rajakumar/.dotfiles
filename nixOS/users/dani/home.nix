@@ -14,16 +14,23 @@ let
     sha256 = "0nzvshv3g559mqrlf4906c9iw4jw8j83dxjax275b2wi8ix0wgmj";
   };
 
-  picom = pkgs.fetchFromGitHub {
-    owner = "jonaburg"; # github user name
-    repo = "picom"; # github repo name
-    rev = "e553e00f48de67d52fe75de9e0e940d85aa14a24"; # an id of a commit
-    sha256 = "04svbv7v73q8yn9la69451rda6l2pgxcphv2zlkdqaxxdbp69195"; # got it from -> nix-prefetch-url --unpack <github .tar url>
-  };
 
 
 
   unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+
+
+
+   ##### overridding picom
+  package = pkgs.picom.overrideAttrs(o: {
+    src = pkgs.fetchFromGitHub {
+      owner = "jonaburg"; # github user name
+      repo = "picom"; # github repo name
+      rev = "e553e00f48de67d52fe75de9e0e940d85aa14a24"; # an id of a commit
+      sha256 = "04svbv7v73q8yn9la69451rda6l2pgxcphv2zlkdqaxxdbp69195"; # got it from -> nix-prefetch-url --unpack <github .tar url>
+    };
+  });
+
 in
 
 {
@@ -49,6 +56,10 @@ in
 
 
   home.packages = with pkgs; [
+    picom   ######### added picom
+
+
+
     # browser
     # firefox
     unstable.brave
@@ -75,7 +86,6 @@ in
     notify-desktop
     jgmenu
     unstable.deadd-notification-center
-    picom
 
     # other
     discord
