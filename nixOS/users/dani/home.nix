@@ -1,5 +1,8 @@
 { config, pkgs, ... }:
 let 
+
+  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+
   zsh-syntax-highlighting = pkgs.fetchFromGitHub {
     owner = "zsh-users";
     repo = "zsh-syntax-highlighting";
@@ -14,11 +17,6 @@ let
     sha256 = "0nzvshv3g559mqrlf4906c9iw4jw8j83dxjax275b2wi8ix0wgmj";
   };
 
-
-
-  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
-
-
 in
 
 {
@@ -31,14 +29,8 @@ in
   nixpkgs.config.allowUnfree = true;
 
 
-
-
-  # programs.vscode.package = pkgs.vscode-fhsWithPackages (ps: with ps; [ jdk11 ]);
-
   nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;
 
-
-  # nixpkgs.config.brave.enablePlasmaBrowserIntegration = true;
 
 
 
@@ -92,6 +84,9 @@ in
     xidlehook
     xautolock
     betterlockscreen
+    arandr
+    xclip
+    clipmenu
 
     #deps
     linuxHeaders
@@ -133,6 +128,7 @@ in
     colorpicker
     youtube-dl
     acpi
+    xorg.xkill
 
     # langs
     # ruby

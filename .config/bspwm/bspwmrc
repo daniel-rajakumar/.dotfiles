@@ -3,6 +3,7 @@
 sxhkd &
 killall polybar && killall polybar
 killall libinput-debug-events
+pkill -TERM .deadd-notifica
 
 sudo tuptime
 
@@ -15,6 +16,7 @@ deadd-notification-center &
 picom --experimental-backends &
 fusuma &
 redshift -l $LOCATION_LAT:$LOCATION_LON &
+clipmenud &
 
 #wallpaper
 nitrogen --head=1 --random ~/MEGA/Pictures/wallpapers/bspwm/green_circle.png --set-auto &

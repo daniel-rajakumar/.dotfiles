@@ -200,7 +200,7 @@ XF86Calculator
 
 #color picker
 super + c
-	colorpicker --short --one-shot --preview | xclip -selection clipboard -r
+	colorpicker --short --one-shot | xclip -selection clipboard -r
 
 
 
@@ -244,4 +244,16 @@ super + Up
 super + Right
     bspc node -p east
 
+
+
+super + v
+    CM_LAUNCHER=rofi clipmenu \
+        -location 1 \
+        -m -3 \
+        -p "Clipmenu" \
+        -no-show-icons \
+        -columns 2 \
+        -theme-str '* \{ font: 20px; \}' \
+        -theme-str 'listview \{ spacing: 10; \}' \
+        -theme-str 'window \{ width: 30em; \}' && xdotool key shift+Insert
 
