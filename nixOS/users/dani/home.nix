@@ -16,7 +16,6 @@ let
 
 
 
-
   unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
 
 
@@ -45,10 +44,7 @@ in
 
 
   home.packages = with pkgs; [
-
-
     # browser
-    # firefox
     unstable.brave
     google-chrome
 
@@ -57,6 +53,7 @@ in
     # neovim
     neovim-nightly
     vscode
+    unstable.jetbrains.idea-community
 
     # terminal
     kitty
@@ -73,7 +70,7 @@ in
     notify-desktop
     jgmenu
     unstable.deadd-notification-center
-    picom   ######### added picom
+    picom
 
     # other
     discord
@@ -137,20 +134,9 @@ in
     youtube-dl
     acpi
 
-
     # langs
     # ruby
     # openjdk11
-    unstable.jetbrains.idea-community
-
-
-
-
-
-
-    # ?
-    # xdg-desktop-portal-kde
-
   ];
 
 
@@ -194,6 +180,8 @@ in
         };
       });
     })
+
+
   ];
 
 
@@ -232,8 +220,8 @@ in
     enable = true;
     vimAlias = true;
 
-   plugins = with pkgs.vimPlugins; [
-     # one-nvim
+   plugins = with unstable.pkgs.vimPlugins; [
+     one-nvim
      # gruvbox-nvim
     ];
 
@@ -244,6 +232,8 @@ in
       set mouse=a
       set tabstop=2
       set expandtab 
+      autocmd BufNewFile,BufRead *.rasi set syntax=scss
+      colorscheme one-nvim
     '';
   };
  
