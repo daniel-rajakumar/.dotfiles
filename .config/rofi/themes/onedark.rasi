@@ -122,3 +122,7 @@ button selected {
   background-color: @emphasis;
 }
 
+
+element-icon { 
+  size: 500px ; 
+}

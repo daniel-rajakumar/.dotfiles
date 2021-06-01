@@ -1,4 +1,4 @@
-#~/bin/bash
+#!/bin/bash
 #this shell script is PUBLIC DOMAIN. You may do whatever you want with it.
 
 ID1=$(polybar-msg cmd list | sed 's/[^0-9]*//g' |  sed -n '1 p')

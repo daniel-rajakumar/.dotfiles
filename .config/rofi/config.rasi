@@ -8,7 +8,6 @@ configuration {
 	show-icons: true;
 	icon-theme: "Papirus";
 	separator-style: "solid";
-	theme: "~/.config/rofi/themes/onedark.rasi";
+    theme: "~/.config/rofi/themes/onedark.rasi";
 }
 
-element-icon { size: 2.5ch ; }
