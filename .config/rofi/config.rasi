@@ -1,5 +1,5 @@
 configuration {
-	modi: "drun,window,calc";
+	modi: "drun,Project:~/scripts/apps.sh";
 	width: 50;
 	lines: 10;
 	columns: 2;
