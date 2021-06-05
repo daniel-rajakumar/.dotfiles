@@ -39,6 +39,7 @@ in
     # browser
     unstable.brave
     google-chrome
+    chromium
 
     # editors
     vim
@@ -133,6 +134,11 @@ in
     # langs
     # ruby
     # openjdk11
+
+    python3
+    # python38Packages.requests
+   
+
   ];
 
 

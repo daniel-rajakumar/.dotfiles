@@ -16,8 +16,8 @@
 import requests
 import os
 
-CITY = os.environ.get('CITY_CODE')
-API_KEY = os.environ.get('OPEN_WEATHER_API')
+# CITY = os.environ.get('CITY_CODE')
+# API_KEY = os.environ.get('OPEN_WEATHER_API')
 UNITS = "Metric"
 UNIT_KEY = "C"
 #UNIT_KEY = "F"

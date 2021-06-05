@@ -89,8 +89,9 @@ bspc rule -a firefox desktop=1
 # bspc rule -a "VirtualBox Manager" state=floating
 # bspc rule -a "VirtualBoxVM" state=floating
 
-bspc rule -a "*:*:YouTube Music" desktop=0
-bspc rule -a "*:*:Outlook" desktop=10
+# bspc rule -a "*:*:YouTube Music" desktop=0
+bspc rule -a "*:*:YouTube Music*" desktop=0
+bspc rule -a "*:*:*Outlook*" desktop=10
 bspc rule -a "*:*:Office" desktop=19
 bspc rule -a "Qalculate-gtk" state=floating rectangle=266x84+2919+42
 
