@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 let 
 
-  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+  unstable = import <nixos-unstable> { config = { allowUnfree = true; allowBroken = true; }; };
 
   zsh-syntax-highlighting = pkgs.fetchFromGitHub {
     owner = "zsh-users";
@@ -17,6 +17,7 @@ let
     sha256 = "0nzvshv3g559mqrlf4906c9iw4jw8j83dxjax275b2wi8ix0wgmj";
   };
 
+
 in
 
 {
@@ -27,6 +28,7 @@ in
   home.stateVersion = "21.03";
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowBroken = true;
 
 
   nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;
@@ -88,6 +90,15 @@ in
     arandr
     xclip
     clipmenu
+    thunderbird
+    # unstable.ue4
+    unityhub
+    unity3d
+
+
+    #fun
+    cowsay
+    fortune
 
     #deps
     linuxHeaders
@@ -130,6 +141,11 @@ in
     youtube-dl
     acpi
     xorg.xkill
+    xorg.xmodmap
+    xbindkeys
+    xkbd
+    unstable.autokey
+    python39Packages.pyqt5
 
     # langs
     # ruby
@@ -184,6 +200,8 @@ in
     })
 
 
+
+
   ];
 
 
@@ -235,7 +253,7 @@ in
       set tabstop=2
       set expandtab 
       autocmd BufNewFile,BufRead *.rasi set syntax=scss
-      colorscheme one-nvim
+      # colorscheme one-nvim
     '';
   };
  

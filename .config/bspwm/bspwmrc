@@ -83,7 +83,7 @@ bspc config urgent_border_color           "#555555"
 # bspc rule -a <NAME> desktop='^7' state=floating center=true rectangle=1376x625+0+0
 bspc rule -a discord desktop=9 
 bspc rule -a Code desktop=8 
-bspc rule -a firefox desktop=1 
+bspc rule -a Firefox desktop=1 
 
 # bspc rule -a "VirtualBox Manager" state=floating
 # bspc rule -a "VirtualBoxVM" state=floating
@@ -101,13 +101,13 @@ bspc rule -a "App" state=floating
 
 #startup apps
 if ! pgrep -a "brave" >/dev/null; then
-        $HOME/scripts/apps.sh "Outlook"
-        $HOME/scripts/apps.sh "Youtube Music"
-        $HOME/scripts/apps.sh "Office"
+#        $HOME/scripts/apps.sh "Outlook"
+#        $HOME/scripts/apps.sh "Youtube Music"
+#        $HOME/scripts/apps.sh "Office"
 fi
 
-if ! pgrep -a "Discord" >/dev/null; then Discord; fi
-if ! pgrep -a "code" >/dev/null; then code; fi
+#if ! pgrep -a "Discord" >/dev/null; then Discord; fi
+#if ! pgrep -a "code" >/dev/null; then code; fi
 
 
 
