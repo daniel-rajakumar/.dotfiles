@@ -15,7 +15,7 @@ polybar bottom1 &
 deadd-notification-center &
 picom --experimental-backends &
 fusuma &
-redshift -l $LOCATION_LAT:$LOCATION_LON &
+# redshift -l $LOCATION_LAT:$LOCATION_LON &
 clipmenud &
 
 #wallpaper
@@ -27,7 +27,7 @@ setxkbmap -option caps:swapescape &
 
 
 # multi monitor
-xrandr --output eDP-1 --primary --mode 1920x1080 --pos 1280x0 --rotate normal --output DP1 --off --output DP2 --off --output HDMI-1 --mode 1280x1024 --pos 0x0 --rotate normal --output VIRTUAL1 --off &
+xrandr --output eDP1 --primary --mode 1920x1080 --pos 1280x0 --rotate normal --output DP1 --off --output DP2 --off --output HDMI1 --mode 1280x1024 --pos 0x0 --rotate normal --output VIRTUAL1 --off &
 
 
 # lock screen after 5 mins
@@ -36,14 +36,14 @@ xrandr --output eDP-1 --primary --mode 1920x1080 --pos 1280x0 --rotate normal --
 # suspend after 305 second 
 
 # xidlehook --not-when-fullscreen --timer 150 "$HOME/scripts/lockScreen.sh" "" &
-xidlehook --not-when-fullscreen --timer 300 "$HOME/scripts/lockScreen.sh; systemctl suspend" "" &
+# xidlehook --not-when-fullscreen --timer 300 "$HOME/scripts/lockScreen.sh; systemctl suspend" "" &
 # xidlehook --not-when-fullscreen --timer 500 "$HOME/scripts/lockScreen.sh; systemctl hybrade" "" &
 
 
 
 
-bspc monitor eDP-1 -d 1 2 3 4 5 6 7 8 9 0 11 12 13 14 15 16 17 18 19 10
-bspc monitor HDMI-1 -d 21 22 23 24 25 26 27 29 29 20
+bspc monitor eDP1 -d 1 2 3 4 5 6 7 8 9 0 11 12 13 14 15 16 17 18 19 10
+bspc monitor HDMI1 -d 21 22 23 24 25 26 27 29 29 20
 
 #config
 bspc config border_radius                 8
@@ -92,6 +92,7 @@ bspc rule -a Firefox desktop=1
 bspc rule -a "*:*:YouTube Music*" desktop=0
 bspc rule -a "*:*:*Outlook*" desktop=10
 bspc rule -a "*:*:Office" desktop=19
+bspc rule -a "UE4Editor" desktop=18
 bspc rule -a "Qalculate-gtk" state=floating rectangle=266x84+2919+42
 
 

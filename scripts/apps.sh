@@ -4,6 +4,7 @@
 apps=(
         "Outlook \0icon\x1fms-outlook"
         "Office \0icon\x1fms-office"
+        "Unreal Engine 4 \0icon\x1fepic-games"
         "Youtube Music \0icon\x1fyoutube-music-desktop-app"
 )
 
@@ -28,6 +29,9 @@ fi
                 sleep 1.5
                 bspc node focused -t tiled
                 bspc node -d 19
+
+        elif [[ "$app" == *"Unreal Engine 4"* ]]; then
+		./UnrealEngine/Engine/Binaries/Linux/UE4Editor
 
         elif [[ "$app" == *"Youtube Music"* ]]; then
                 brave --kiosk --new-window "https://music.youtube.com" &

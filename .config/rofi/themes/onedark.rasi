@@ -124,5 +124,5 @@ button selected {
 
 
 element-icon { 
-  size: 500px ; 
+  size: 30px ; 
 }

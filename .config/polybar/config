@@ -40,7 +40,7 @@ white1 	 = #CFD7E6
 
 
 [bar/top]
-monitor = ${env:MONITOR:eDP-1}
+monitor = ${env:MONITOR:eDP1}
 top = true
 enable-ipc = true
 width = 100%
@@ -118,12 +118,12 @@ tray-background = ${colors.background}
 
 [bar/top1]
 inherit = bar/top
-monitor = ${env:MONITOR:HDMI-1}
+monitor = ${env:MONITOR:HDMI1}
 
 
 [bar/bottom1]
 inherit = bar/bottom
-monitor = ${env:MONITOR:HDMI-1}
+monitor = ${env:MONITOR:HDMI1}
 
 tray-position = none 
 
@@ -160,7 +160,7 @@ ws-icon-13 = 14; 14
 ws-icon-14 = 15; 15
 ws-icon-15 = 16; 16
 ws-icon-16 = 17; 17
-ws-icon-17 = 18; 18
+ws-icon-17 = 18;%{F#98C379}%{T6}%{T-}
 ws-icon-18 = 19;%{F#EB3B00}%{T4}%{T-}
 ws-icon-19 = 10;%{F#006EC3}%{T6}%{T-}
 ws-icon-20 = 21;1
